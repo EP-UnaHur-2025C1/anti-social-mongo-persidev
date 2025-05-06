@@ -2,7 +2,7 @@ const { Router } = require('express')
 const { userControllers } = require('../controllers')
 const { User } = require('../db/models')
 const { genericMiddlewares, userMiddlewares } = require('../middlewares')
-
+const { userSchema } = require('../schemas')
 const userRoutes = Router()
 
 // Metodos
@@ -15,11 +15,13 @@ userRoutes.get('/:id',
 )
 
 userRoutes.post('/',
+  genericMiddlewares.validatorSchema(userSchema),
   userMiddlewares.existNickName,
   userMiddlewares.existEmail,
   userControllers.createUser
 )
 userRoutes.put('/:id',
+  genericMiddlewares.validatorSchema(userSchema),
   genericMiddlewares.validateID(User),
   genericMiddlewares.existID(User),
   userMiddlewares.existNickName,

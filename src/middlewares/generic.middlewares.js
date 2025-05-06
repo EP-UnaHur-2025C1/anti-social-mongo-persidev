@@ -12,7 +12,7 @@ const existID = (model) => {
   }
 }
 
-const validateID = (model) => {
+const validateID = () => {
   return async (req, res, next) => {
     try {
       const { id } = req.params
@@ -31,4 +31,22 @@ const validateID = (model) => {
   }
 }
 
-module.exports = { existID, validateID }
+const validatorSchema = (schema) => {
+  return (req, res, next) => {
+    const { error } = schema.validate(req.body, { abortEarly: false })
+    if (error) {
+      const errores = error.details.map(detail => {
+        return {
+          attributeError: detail.path[0],
+          messageError: detail.message,
+          typeError: detail.type
+        }
+      })
+      return res.status(400).json(errores)
+    }
+    next()
+  }
+}
+
+// Exportacion
+module.exports = { existID, validateID, validatorSchema }
