@@ -14,9 +14,20 @@ const getUser = async (req, res) => {
 // Post
 const createUser = async (req, res) => {
   const { nickName, email } = req.body
-  const userCreated = User.create({ nickName, email })
+  const userCreated = await User.create({ nickName, email })
   res.json(userCreated)
 }
 
+// Put
+const editUser = async (req, res) => {
+  const { id } = req.params
+  const { nickName, email } = req.body
+  const userEdite = await User.findByPk(id)
+  userEdite.nickName = nickName
+  userEdite.email = email
+  await userEdite.save()
+  res.json(userEdite)
+}
+
 // Exportacion de todas las funciones
-module.exports = { getUsers, createUser, getUser }
+module.exports = { getUsers, createUser, getUser, editUser }
