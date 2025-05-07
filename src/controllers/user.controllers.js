@@ -29,5 +29,17 @@ const editUser = async (req, res) => {
   res.json(userEdite)
 }
 
+// Delete
+const deleteUser = async (req, res) => {
+  try {
+    const { id } = req.params
+    const userDeleted = await User.delete(id)
+    res.json({ userDeleted })
+  } catch (error) {
+    console.log('Error en el servidor al intentar eliminar el usuario', error)
+    res.status(500).json({ message: 'Error en el servidor', error })
+  }
+}
+
 // Exportacion de todas las funciones
-module.exports = { getUsers, createUser, getUser, editUser }
+module.exports = { getUsers, createUser, getUser, editUser, deleteUser }

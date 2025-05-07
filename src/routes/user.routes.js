@@ -28,6 +28,11 @@ userRoutes.put('/:id',
   userMiddlewares.existEmail,
   userControllers.editUser
 )
+userRoutes.delete('/:id',
+  genericMiddlewares.validateID(User),
+  genericMiddlewares.existID(User),
+  userControllers.deleteUser
+)
 
 // Exportacion
 module.exports = userRoutes
