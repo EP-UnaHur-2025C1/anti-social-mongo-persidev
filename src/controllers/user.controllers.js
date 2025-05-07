@@ -1,35 +1,64 @@
 const { User } = require('../db/models')
 
-// Getters
-const getUsers = async (req, res) => {
-  const users = await User.findAll()
-  res.json({ users })
+// Getters --------------------------------------------
+const getUsers = async (_, res) => {
+  try {
+    const users = await User.findAll()
+    res.json({ users })
+  } catch (error) {
+    console.log('Error en el servidor al solicitar los usuarios', error)
+    res.status(500).json({ message: 'Error en el servidor al solicitar los usuarios', error })
+  }
 }
-const getUser = async (req, res) => {
-  const id = req.params.id
-  const user = await User.findByPk(id)
-  res.json(user)
+const getUserByPk = async (req, res) => {
+  try {
+    const id = req.params.id
+    const user = await User.findByPk(id)
+    res.json(user)
+  } catch (error) {
+    console.log('Error en el servidor al solicitar el usuario', error)
+    res.status(500).json({ message: 'Error en el servidor al solicitar el usuario', error })
+  }
+}
+const getUserByNickName = async (req, res) => {
+  try {
+    const { nickName } = req.params
+    const user = await User.findOne({ where: { nickName } })
+    res.json(user)
+  } catch (error) {
+    console.log('Error en el servidor al solicitar un usuario', error)
+    res.status(500).json({ message: 'Error en el servidor al solicitar el usuario', error })
+  }
 }
 
-// Post
+// Post ------------------------------------------
 const createUser = async (req, res) => {
-  const { nickName, email } = req.body
-  const userCreated = await User.create({ nickName, email })
-  res.json(userCreated)
+  try {
+    const userCreated = await User.create(req.body)
+    res.json(userCreated)
+  } catch (error) {
+    console.log('Error en el servidor al crear un usuario', error)
+    res.status(500).json({ message: 'Error en el servidor al agregar el usuario', error })
+  }
 }
 
-// Put
+// Put -----------------------------------------
 const editUser = async (req, res) => {
-  const { id } = req.params
-  const { nickName, email } = req.body
-  const userEdite = await User.findByPk(id)
-  userEdite.nickName = nickName
-  userEdite.email = email
-  await userEdite.save()
-  res.json(userEdite)
+  try {
+    const { id } = req.params
+    const { nickName, email } = req.body
+    const userEdite = await User.findByPk(id)
+    userEdite.nickName = nickName
+    userEdite.email = email
+    await userEdite.save()
+    res.json(userEdite)
+  } catch (error) {
+    console.log('Error en el servidor al editar un usuario', error)
+    res.status(500).json({ message: 'Error en el servidor al editar el usuario', error })
+  }
 }
 
-// Delete
+// Delete ----------------------------------------------
 const deleteUser = async (req, res) => {
   try {
     const { id } = req.params
@@ -42,4 +71,12 @@ const deleteUser = async (req, res) => {
 }
 
 // Exportacion de todas las funciones
-module.exports = { getUsers, createUser, getUser, editUser, deleteUser }
+
+module.exports = {
+  getUsers,
+  getUserByPk,
+  getUserByNickName,
+  createUser,
+  editUser,
+  deleteUser
+}

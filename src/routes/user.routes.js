@@ -11,21 +11,24 @@ userRoutes.get('/', userControllers.getUsers)
 userRoutes.get('/:id',
   genericMiddlewares.validateID(User),
   genericMiddlewares.existID(User),
-  userControllers.getUser
+  userControllers.getUserByPk
 )
-
+userRoutes.get('/nickname/:nickName',
+  userMiddlewares.checkNickNameExists,
+  userControllers.getUserByNickName
+)
 userRoutes.post('/',
   genericMiddlewares.validatorSchema(userSchema),
-  userMiddlewares.existNickName,
-  userMiddlewares.existEmail,
+  userMiddlewares.checkNickNameNotExists,
+  userMiddlewares.checkEmailNotExists,
   userControllers.createUser
 )
 userRoutes.put('/:id',
   genericMiddlewares.validatorSchema(userSchema),
   genericMiddlewares.validateID(User),
   genericMiddlewares.existID(User),
-  userMiddlewares.existNickName,
-  userMiddlewares.existEmail,
+  userMiddlewares.checkNickNameNotExists,
+  userMiddlewares.checkEmailNotExists,
   userControllers.editUser
 )
 userRoutes.delete('/:id',

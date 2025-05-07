@@ -1,6 +1,7 @@
 const { User } = require('../db/models')
 
-const existNickName = async (req, res, next) => {
+const checkNickNameNotExists = async (req, res, next) => {
+  // Verifica si el nickName recibido en el body NO EXISTE en la base de datos
   try {
     const { nickName } = req.body
     const userExist = await User.findOne({ where: { nickName } })
@@ -12,7 +13,8 @@ const existNickName = async (req, res, next) => {
   }
 }
 
-const existEmail = async (req, res, next) => {
+const checkEmailNotExists = async (req, res, next) => {
+  // Verifica si el email recibido en el body NO EXISTE en la base de datos
   try {
     const { email } = req.body
     const emailExist = await User.findOne({ where: { email } })
@@ -23,5 +25,23 @@ const existEmail = async (req, res, next) => {
     res.status(500).json({ message: 'Error al del servidor verificando el correo', error })
   }
 }
+const checkNickNameExists = async (req, res, next) => {
+  // Verifica si el nickName recibido en los parametros EXISTE en la base de datos
+  try {
+    const { nickName } = req.params
+    const userExist = await User.findOne({ where: { nickName } })
+    if (!userExist) return res.status(400).json({ message: 'NickName inexistente' })
+    next()
+  } catch (error) {
+    console.log(`Error verificando el NickName : ${error}`)
+    res.status(500).json({ message: 'Error al del servidor verificando el nickName', error })
+  }
+}
 
-module.exports = { existNickName, existEmail }
+// Exportacion de las funciones
+
+module.exports = {
+  checkNickNameNotExists,
+  checkEmailNotExists,
+  checkNickNameExists
+}
