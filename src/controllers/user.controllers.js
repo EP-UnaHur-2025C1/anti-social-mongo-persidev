@@ -35,7 +35,7 @@ const getUserByNickName = async (req, res) => {
 const createUser = async (req, res) => {
   try {
     const userCreated = await User.create(req.body)
-    res.json(userCreated)
+    res.status(201).json(userCreated)
   } catch (error) {
     console.log('Error en el servidor al crear un usuario', error)
     res.status(500).json({ message: 'Error en el servidor al agregar el usuario', error })
