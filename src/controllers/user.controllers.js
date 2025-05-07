@@ -62,7 +62,7 @@ const editUser = async (req, res) => {
 const deleteUser = async (req, res) => {
   try {
     const { id } = req.params
-    const userDeleted = await User.delete(id)
+    const userDeleted = await User.destroy({ where: { id } })
     res.json({ userDeleted })
   } catch (error) {
     console.log('Error en el servidor al intentar eliminar el usuario', error)
