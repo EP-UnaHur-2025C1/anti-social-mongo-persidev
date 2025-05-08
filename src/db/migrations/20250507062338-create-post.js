@@ -10,18 +10,13 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       description: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       publicationDate: {
-        type: Sequelize.DATE
-      },
-      createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
       }
     });
   },

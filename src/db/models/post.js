@@ -19,7 +19,9 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
     publicationDate: {
-      type: DataTypes.DATE
+      type: DataTypes.DATE,
+      allowNull: true,
+      defaultValue: DataTypes.NOW
     }
   }, {
     sequelize,

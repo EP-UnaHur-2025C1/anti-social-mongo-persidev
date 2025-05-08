@@ -14,8 +14,8 @@ const getPostByPk = async (req, res) => {
 
 //Post
 const createPost = async (req, res) => {
-  const { description, publicationDate } = req.body
-  const postCreated = await Post.create({ description, publicationDate})
+  const newPost = req.body
+  const postCreated = await Post.create(newPost)
   res.json(postCreated)
 }
 
@@ -32,8 +32,8 @@ const editPost = async (req, res) => {
 //Delete
 const deletePost = async (req, res) => {
   const id = req.params.id
-  const post = await Post.findByPk(id);
-  const removed = await post.destroy();
+  const post = await Post.findByPk(id)
+  const removed = await post.destroy()
   res.json(removed)
 }
 
