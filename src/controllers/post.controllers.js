@@ -36,6 +36,8 @@ const deletePost = async (req, res) => {
   const removed = await post.destroy()
   res.json(removed)
 }
+//http://localhost:3001/posts/1
+
 
 
 
