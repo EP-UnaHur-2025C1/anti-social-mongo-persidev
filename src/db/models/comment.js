@@ -9,14 +9,28 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate(models) {
-      // define association here
+    static associate (models) { /*
+      Comment.belongsTo(models.User, {
+        foreignKey: {
+          name: 'userId',
+          allowNull: false
+        },
+        as: 'User'
+      })
+
+      Comment.belongsTo(models.Post, {
+        foreignKey: {
+          name: 'postId',
+          allowNull: false
+        },
+        as: 'Post'
+      }) */
     }
   }
   Comment.init({
-    commentId: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    commentId: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     content: { type: DataTypes.STRING, allowNull: false },
-    publicationDate: { type: DataTypes.DATEONLY, allowNull: false },
+    publicationDate: { type: DataTypes.DATEONLY, defaultValue: DataTypes.NOW },
     isVisible: {
       type: DataTypes.VIRTUAL(DataTypes.BOOLEAN, ['publicationDate']),
       get: function () {
@@ -26,8 +40,8 @@ module.exports = (sequelize, DataTypes) => {
         return (yearDifference * 12 + monthDifference) < xMonths
       }
     },
-    userId: DataTypes.NUMBER,
-    postId: DataTypes.NUMBER
+    userId: { type: DataTypes.NUMBER, allowNull: false },
+    postId: { type: DataTypes.NUMBER, allowNull: false }
   }, {
     sequelize,
     modelName: 'Comment',
