@@ -6,34 +6,34 @@ const { postSchema } = require('../schemas')
 const postRoutes = Router()
 
 // Metodos
-//Get
+// Get
 postRoutes.get('/', postControllers.getPosts)
 
 postRoutes.get('/:id',
-    genericMiddlewares.existID(Post),
-    genericMiddlewares.validateID(Post),
-    postControllers.getPostByPk
+  genericMiddlewares.existID(Post),
+  genericMiddlewares.validateID(Post),
+  postControllers.getPostByPk
 )
 
-//Post
-postRoutes.post('/:id', 
-    genericMiddlewares.validatorSchema(postSchema),
-    postControllers.createPost
+// Post
+postRoutes.post('/:id',
+  genericMiddlewares.validatorSchema(postSchema),
+  postControllers.createPost
 )
 
-//Put
+// Put
 postRoutes.put('/:id',
-    genericMiddlewares.validatorSchema(postSchema),
-    genericMiddlewares.existID(Post),
-    genericMiddlewares.validateID(Post),
-    postControllers.editPost
+  genericMiddlewares.validatorSchema(postSchema),
+  genericMiddlewares.existID(Post),
+  genericMiddlewares.validateID(Post),
+  postControllers.editPost
 )
 
-//Delete
-postRoutes.delete('/:id', 
-    genericMiddlewares.existID(Post),
-    genericMiddlewares.validateID(Post),
-    postControllers.deletePost
+// Delete
+postRoutes.delete('/:id',
+  genericMiddlewares.existID(Post),
+  genericMiddlewares.validateID(Post),
+  postControllers.deletePost
 )
 
 // Exportacion

@@ -1,9 +1,9 @@
-const { Post } = require('../db/models') 
+const { Post } = require('../db/models')
 
-//Getters
-const getPosts = async (req, res) => {
+// Getters
+const getPosts = async (_, res) => {
   const posts = await Post.findAll()
-  res.json({posts})
+  res.json({ posts })
 }
 
 const getPostByPk = async (req, res) => {
@@ -12,24 +12,24 @@ const getPostByPk = async (req, res) => {
   res.json(post)
 }
 
-//Post
+// Post
 const createPost = async (req, res) => {
   const newPost = req.body
   const postCreated = await Post.create(newPost)
   res.json(postCreated)
 }
 
-//Put
+// Put
 const editPost = async (req, res) => {
   const { id } = req.params
   const { description } = req.body
   const postEdite = await Post.findByPk(id)
   postEdite.description = description
   await postEdite.save()
-  res.json(postEdite) 
+  res.json(postEdite)
 }
 
-//Delete
+// Delete
 const deletePost = async (req, res) => {
   const id = req.params.id
   const post = await Post.findByPk(id)
@@ -37,8 +37,7 @@ const deletePost = async (req, res) => {
   res.json(removed)
 }
 
-//http://localhost:3001/posts/1
-
+// http://localhost:3001/posts/1
 
 // Exportacion de todas las funciones
 module.exports = { getPosts, getPostByPk, createPost, editPost, deletePost }

@@ -6,8 +6,8 @@ const tagSchema = Joi.object({
     'string.min': 'La etiqueta debe tener {#limit} caracteres como minimo',
     'string.max': 'La etiqueta debe tener {#limit} caracteres como maximo',
     'string.base': 'La etiqueta tiene que ser un string'
-  }),
-  
+  })
+
 })
 
 module.exports = tagSchema

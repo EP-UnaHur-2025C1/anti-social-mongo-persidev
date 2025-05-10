@@ -1,6 +1,6 @@
 const { Comment } = require('../db/models')
 
-const getAllComments = async (req, res) => {
+const getAllComments = async (_, res) => {
   const data = await Comment.findAll({})
   res.status(200).json(data)
 }
