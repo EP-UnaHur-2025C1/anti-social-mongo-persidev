@@ -9,22 +9,9 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate (models) { /*
-      Comment.belongsTo(models.User, {
-        foreignKey: {
-          name: 'userId',
-          allowNull: false
-        },
-        as: 'User'
-      })
-
-      Comment.belongsTo(models.Post, {
-        foreignKey: {
-          name: 'postId',
-          allowNull: false
-        },
-        as: 'Post'
-      }) */
+    static associate (models) { 
+      Comment.belongsTo(models.User)
+      Comment.belongsTo(models.Post)
     }
   }
   Comment.init({
@@ -40,8 +27,6 @@ module.exports = (sequelize, DataTypes) => {
         return (yearDifference * 12 + monthDifference) < xMonths
       }
     },
-    userId: { type: DataTypes.NUMBER, allowNull: false },
-    postId: { type: DataTypes.NUMBER, allowNull: false }
   }, {
     sequelize,
     modelName: 'Comment',

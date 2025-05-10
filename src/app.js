@@ -14,7 +14,7 @@ app.use(express.json())
 
 // Listo mi aplicacion al puerto
 app.listen(PORT, async () => {
-  // await db.sequelize.sync({ force: true })
+  await db.sequelize.sync({ force: true })
   console.log(`Aplicacion corriendo en el puerto ${PORT}`)
 })
 // Exporto mi aplicacion

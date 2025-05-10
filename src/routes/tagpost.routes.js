@@ -1,4 +1,4 @@
 const { Router } = require('express')
-const postCommentsRoutes = Router()
+const tagpostRoutes = Router()
 
-module.exports = postCommentsRoutes
+module.exports = tagpostRoutes
