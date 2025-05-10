@@ -13,6 +13,7 @@ commentRoutes.get('/:id',
   commentController.getCommentById)
 
 commentRoutes.post('/',
+  // Validar el id el usuario y del post
   genericMiddlewares.validatorSchema(commentSchema),
   commentController.createComment)
 
