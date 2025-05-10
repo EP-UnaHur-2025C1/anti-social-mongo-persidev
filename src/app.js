@@ -1,5 +1,5 @@
 const express = require('express')
-// const db = require('./db/models')
+const db = require('./db/models')
 // Accedo a la variable de entorno si existe
 require('dotenv').config()
 
