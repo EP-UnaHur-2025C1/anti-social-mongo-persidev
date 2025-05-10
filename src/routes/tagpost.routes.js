@@ -1,4 +1,9 @@
 const { Router } = require('express')
-const tagpostRoutes = Router()
+const postTagsRoutes = Router()
+const { postTagControllers } = require('../controllers/')
 
-module.exports = tagpostRoutes
+postTagsRoutes.post('/', postTagControllers.createTagPost)
+postTagsRoutes.delete('/', postTagControllers.deleteTagPost)
+postTagsRoutes.get('/post/:idPost', postTagControllers.getTagsOfPost)
+
+module.exports = postTagsRoutes

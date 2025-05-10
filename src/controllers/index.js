@@ -3,5 +3,14 @@ const tagControllers = require('./tag.controllers')
 const userControllers = require('./user.controllers')
 const imageControllers = require('./image.controllers')
 const commentController = require('./comment.controllers')
+const postTagControllers = require('./postTag.controllers')
 
-module.exports = { postControllers, tagControllers, userControllers, imageControllers, commentController }
+// Exportacion
+module.exports = {
+  postControllers,
+  tagControllers,
+  userControllers,
+  imageControllers,
+  commentController,
+  postTagControllers
+}

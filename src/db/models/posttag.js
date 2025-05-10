@@ -1,14 +1,14 @@
 'use strict'
 const { Model } = require('sequelize')
 module.exports = (sequelize, DataTypes) => {
-  class TagPost extends Model {
+  class PostTag extends Model {
     static associate (models) {
       // No hace falta definir belongsToMany acá
       // Las relaciones se manejan desde Post y Tag
     }
   }
 
-  TagPost.init({
+  PostTag.init({
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
@@ -17,9 +17,9 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {
     sequelize,
-    modelName: 'TagPost',
+    modelName: 'PostTag',
     timestamps: false // para createdAt y updatedAt
   })
 
-  return TagPost
+  return PostTag
 }

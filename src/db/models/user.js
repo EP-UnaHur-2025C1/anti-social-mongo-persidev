@@ -10,14 +10,17 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate (models) {
-      User.hasMany(models.Post)
+      User.hasMany(models.Post, {
+        foreignKey: {
+          name: 'UserId',
+          allowNull: false
+        }
+      })
       User.hasMany(models.Comment, {
         foreignKey: {
           name: 'UserId',
           allowNull: false
-        },
-        onDelete: 'CASCADE',
-        hooks: true
+        }
       })
     }
   }
@@ -25,10 +28,12 @@ module.exports = (sequelize, DataTypes) => {
 
     nickName: {
       type: DataTypes.STRING,
+      allowNull: false,
       unique: true
     },
     email: {
       type: DataTypes.STRING,
+      allowNull: false,
       unique: true
     }
   }, {

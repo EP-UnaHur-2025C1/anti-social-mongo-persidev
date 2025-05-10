@@ -1,7 +1,7 @@
 const { Router } = require('express')
 const { Post } = require('../db/models')
 const { postControllers } = require('../controllers')
-const { genericMiddlewares, postMiddlewares } = require('../middlewares')
+const { genericMiddlewares } = require('../middlewares')
 const { postSchema } = require('../schemas')
 const postRoutes = Router()
 
@@ -16,7 +16,7 @@ postRoutes.get('/:id',
 )
 
 // Post
-postRoutes.post('/:id',
+postRoutes.post('/',
   genericMiddlewares.validatorSchema(postSchema),
   postControllers.createPost
 )

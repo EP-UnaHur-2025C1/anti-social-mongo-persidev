@@ -3,6 +3,14 @@ const postRoutes = require('./post.routes')
 const userRoutes = require('./user.routes')
 const postCommentsRoutes = require('./tagpost.routes')
 const commentRoutes = require('./comment.routes')
+const postTagsRoutes = require('./tagpost.routes')
 
 // Exportacion de rutas
-module.exports = { tagRoutes, postRoutes, userRoutes, postCommentsRoutes, commentRoutes }
+module.exports = {
+  tagRoutes,
+  postRoutes,
+  userRoutes,
+  postCommentsRoutes,
+  commentRoutes,
+  postTagsRoutes
+}
