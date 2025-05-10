@@ -15,6 +15,8 @@ postRoutes.get('/:id',
   postControllers.getPostByPk
 )
 
+// postRoutes.get('/:idPost/comments/', postControllers)
+
 // Post
 postRoutes.post('/',
   genericMiddlewares.validatorSchema(postSchema),

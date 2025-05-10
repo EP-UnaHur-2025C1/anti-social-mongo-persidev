@@ -1,6 +1,6 @@
 const { Router } = require('express')
 const commentRoutes = Router()
-const { Comment } = require('../db/models')
+const { Comment, User } = require('../db/models')
 const { genericMiddlewares } = require('../middlewares')
 const { commentSchema } = require('../schemas')
 const { commentController } = require('../controllers')
@@ -13,6 +13,7 @@ commentRoutes.get('/:id',
   commentController.getCommentById)
 
 commentRoutes.post('/',
+  genericMiddlewares.checkIdInModel(User, 'UserId'),
   // Validar el id el usuario y del post
   genericMiddlewares.validatorSchema(commentSchema),
   commentController.createComment)

@@ -11,6 +11,16 @@ const existID = (model) => {
     }
   }
 }
+const checkIdInModel = (model, idName) => {
+  return async (req, res, next) => {
+    const id = req.body[idName]
+    const oneElement = await model.findByPk(id)
+    if (!oneElement) {
+      return res.status(404).json({ message: 'No existe el id' })
+    }
+    next()
+  }
+}
 
 const validateID = () => {
   return async (req, res, next) => {
@@ -49,4 +59,4 @@ const validatorSchema = (schema) => {
 }
 
 // Exportacion
-module.exports = { existID, validateID, validatorSchema }
+module.exports = { existID, validateID, validatorSchema, checkIdInModel }
