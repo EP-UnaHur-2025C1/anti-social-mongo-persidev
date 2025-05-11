@@ -1,5 +1,7 @@
 const express = require('express')
-const db = require('./db/models')
+const openapiSpecification = require('./docs/swagger.js')
+const swaggerUI = require('swagger-ui-express')
+
 // Accedo a la variable de entorno si existe
 require('dotenv').config()
 
@@ -9,12 +11,14 @@ const PORT = process.env.PORT || 3001
 // Creo la instancia de mi aplicacion
 const app = express()
 
-// Configuro para poder pasar json por el body
+// Configuraciones necesarias
 app.use(express.json())
+app.use('/api-docs/', swaggerUI.serve, swaggerUI.setup(openapiSpecification))
 
 // Listo mi aplicacion al puerto
 app.listen(PORT, async () => {
-  //await db.sequelize.sync({ force: true })
+  // const db = require('./db/models'
+  // await db.sequelize.sync({ force: true })
   console.log(`Aplicacion corriendo en el puerto ${PORT}`)
 })
 // Exporto mi aplicacion

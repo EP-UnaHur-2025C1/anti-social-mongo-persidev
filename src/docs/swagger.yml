@@ -1,0 +1,63 @@
+tags:
+  - name: pp
+    description: Peticiones para realizar sobre usuarios
+paths:
+  /users:
+    get:
+      tags:
+        - pp
+      summary: Retorna todossa los usuarios.
+      description: Retorna un array de objetos que contiene todos los usuarios disponibles.
+      operationId: getUsers
+      responses:
+        '200':
+          description: Operacion realizada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pet'
+        '500':
+          description: Error en el servidor al solicitar los usuarios.
+    post:
+      tags:
+        - pp
+      summary: Permite crear uasdn usuario.
+      description: Permite crear un usuario a la base de datos retornando el usuario agregado
+      operationId: createUser
+      requestBody:
+        description: Crea un usuario
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Pet'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Pet'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Pet'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pet'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Pet'
+        '400':
+          description: Invalid input
+        '422':
+          description: Validation exception
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+      security:
+        - petstore_auth:
+            - write:pets
+            - read:pets

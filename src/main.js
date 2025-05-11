@@ -1,5 +1,4 @@
 const app = require('./app')
-
 // Importacion de rutas
 const { tagRoutes, postRoutes, userRoutes, commentRoutes, postTagsRoutes } = require('./routes')
 
