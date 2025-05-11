@@ -1,21 +1,35 @@
-const { Post } = require('../db/models')
+const { Post, Image } = require('../db/models')
+const { createImage } = require('./image.controllers')
 
 // Getters
 const getPosts = async (_, res) => {
-  const posts = await Post.findAll()
+  const posts = await Post.findAll({include:{
+    model: Image,
+    attributes: ["url","id"] 
+  } 
+  }) //status
   res.json({ posts })
 }
 
 const getPostByPk = async (req, res) => {
   const id = req.params.id
-  const post = await Post.findByPk(id)
+  const post = await Post.findByPk(id) //status
   res.json(post)
 }
 
 // Post
 const createPost = async (req, res) => {
-  const newPost = req.body
-  const postCreated = await Post.create(newPost)
+  const { description, UserId } = req.body
+  console.log(description, UserId)
+  const postCreated = await Post.create({description, UserId})
+  const { images } = req.body
+  images.forEach( async img => {
+      const imageNew = await Image.create({
+        PostId: postCreated.id,
+        url: img.url
+    }) 
+    console.log(imageNew)
+  }); 
   res.json(postCreated)
 }
 

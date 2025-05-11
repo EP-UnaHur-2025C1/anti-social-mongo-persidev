@@ -1,10 +1,12 @@
 const { Router } = require('express')
-const router = Router()
-const { imageController } = require('../controllers')
+const imageRoutes = Router()
+const { imageControllers } = require('../controllers')
 const { existsImage } = require('../middlewares')
 
-router.get('/', imageController.getImages)
-router.get('/:id', existsImage, imageController.getImageById)
-router.delete('/:id', existsImage, imageController.deleteById)
+imageRoutes.get('/', imageControllers.getImages)
 
-module.exports = router
+/* imageRoutes.get('/:id', existsImage, imageControllers.getImageById)
+
+imageRoutes.delete('/:id', existsImage, imageControllers.deleteById) */
+
+module.exports = imageRoutes

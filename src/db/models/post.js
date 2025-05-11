@@ -26,6 +26,11 @@ module.exports = (sequelize, DataTypes) => {
       Post.belongsToMany(models.Tag, {
         through: models.PostTag
       })
+      Post.hasMany(models.Image, {
+        foreignKey: {
+          name: 'PostId'
+        }
+      })
     }
   }
   Post.init({
