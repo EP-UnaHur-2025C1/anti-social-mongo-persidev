@@ -27,7 +27,6 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Comment.init({
-    commentId: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     content: { type: DataTypes.STRING, allowNull: false },
     publicationDate: { type: DataTypes.DATEONLY, defaultValue: DataTypes.NOW },
     isVisible: {
