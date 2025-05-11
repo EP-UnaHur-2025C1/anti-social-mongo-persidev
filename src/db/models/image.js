@@ -12,10 +12,9 @@ module.exports = (sequelize, DataTypes) => {
     static associate (models) {
       Image.belongsTo(models.Post, {
         foreignKey: {
-          name: 'PostId',
-          allowNull: false
+          name: 'PostId'
         },
-        as: 'post'
+        onDelete:'CASCADE'
       })
     }
   }
