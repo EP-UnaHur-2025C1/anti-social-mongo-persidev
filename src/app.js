@@ -17,7 +17,6 @@ app.use('/api-docs/', swaggerUI.serve, swaggerUI.setup(openapiSpecification))
 
 // Listo mi aplicacion al puerto
 app.listen(PORT, async () => {
-  // const db = require('./db/models'
   // await db.sequelize.sync({ force: true })
   console.log(`Aplicacion corriendo en el puerto ${PORT}`)
 })
