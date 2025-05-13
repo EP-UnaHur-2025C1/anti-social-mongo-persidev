@@ -1,5 +1,4 @@
 const { Post, Image, Comment } = require('../db/models')
-const { createImage } = require('./image.controllers')
 
 // Getters
 const getPosts = async (_, res) => {
@@ -8,13 +7,13 @@ const getPosts = async (_, res) => {
       model: Image,
       attributes: ['url', 'id']
     }]
-  }) //status
+  }) // status
   res.json({ posts })
 }
 
 const getPostByPk = async (req, res) => {
   const id = req.params.id
-  const post = await Post.findByPk(id) //status
+  const post = await Post.findByPk(id) // status
   res.json(post)
 }
 
@@ -68,8 +67,6 @@ const deletePost = async (req, res) => {
   const removed = await post.destroy()
   res.json(removed)
 }
-
-// http://localhost:3001/posts/1
 
 // Exportacion de todas las funciones
 module.exports = { getPosts, getPostByPk, createPost, editPost, deletePost, getPostByIdWithComments }
