@@ -26,6 +26,9 @@ const validateID = () => {
   return async (req, res, next) => {
     try {
       const { id } = req.params
+
+      if (id === undefined) return res.status(500).json({ message: 'Error, es necesario ingresar un ID' })
+
       // Verifico que es un numero
       if (isNaN(id)) return res.status(500).json({ message: `Error, '${id}' debe ser un numero` })
 
