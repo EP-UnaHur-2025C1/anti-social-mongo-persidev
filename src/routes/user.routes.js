@@ -17,6 +17,12 @@ userRoutes.get('/nickname/:nickName',
   userMiddlewares.checkNickNameExists,
   userControllers.getUserByNickName
 )
+userRoutes.get('/:id/posts',
+  genericMiddlewares.validateID(User),
+  genericMiddlewares.existID(User),
+  userControllers.getUserWithPosts
+
+)
 userRoutes.post('/',
   genericMiddlewares.validatorSchema(userSchema),
   userMiddlewares.checkNickNameNotExists,

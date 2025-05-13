@@ -1,4 +1,4 @@
-const { User } = require('../db/models')
+const { User, Post, Image } = require('../db/models')
 
 // Getters --------------------------------------------
 const getUsers = async (_, res) => {
@@ -31,6 +31,26 @@ const getUserByNickName = async (req, res) => {
   }
 }
 
+const getUserWithPosts = async (req, res) => {
+  try {
+    const { id } = req.params
+    const userFind = await User.findOne({
+      where: { id },
+      include: {
+        model: Post,
+        attributes: ['description', 'publicationDate'],
+        include: {
+          model: Image,
+          attributes: ['url']
+        }
+      }
+    })
+    res.json(userFind)
+  } catch (error) {
+    console.log('Error en el servidor al solicitar un usuario', error)
+    res.status(500).json({ message: 'Error en el servidor al solicitar el usuario', error })
+  }
+}
 // Post ------------------------------------------
 const createUser = async (req, res) => {
   try {
@@ -78,5 +98,6 @@ module.exports = {
   getUserByNickName,
   createUser,
   editUser,
-  deleteUser
+  deleteUser,
+  getUserWithPosts
 }
