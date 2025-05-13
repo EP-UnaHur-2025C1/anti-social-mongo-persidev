@@ -13,8 +13,8 @@ commentRoutes.get('/:id',
   commentController.getCommentById)
 
 commentRoutes.post('/',
-  genericMiddlewares.checkIdInModel(User, 'UserId'),
-  genericMiddlewares.checkIdInModel(Post, 'PostId'),
+  //genericMiddlewares.checkIdInModel(User, 'UserId'),
+  //genericMiddlewares.checkIdInModel(Post, 'PostId'),
   genericMiddlewares.validatorSchema(commentSchema),
   commentController.createComment)
 

@@ -15,7 +15,8 @@ postRoutes.get('/:id',
   postControllers.getPostByPk
 )
 
-// postRoutes.get('/:idPost/comments/', postControllers)
+// NUEVAA
+postRoutes.get('/:id/comments', postControllers.getPostByIdWithComments)
 
 // Post
 postRoutes.post('/',
