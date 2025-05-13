@@ -12,7 +12,17 @@ const checkNickNameNotExists = async (req, res, next) => {
     res.status(500).json({ message: 'Error al del servidor verificando el nickName', error })
   }
 }
-
+const checkIdExistInUsers = async (req, res, next) => {
+  try {
+    const id = req.params.idUser
+    const user = await User.findByPk(id)
+    if (!user) return res.status(404).json({ message: 'No existe el usuario con id: ' + id })
+    next()
+  } catch (error) {
+    console.log(`Error verificando el idUser : ${error}`)
+    res.status(500).json({ message: 'Error al del servidor verificando el id del usuario', error })
+  }
+}
 const checkEmailNotExists = async (req, res, next) => {
   // Verifica si el email recibido en el body NO EXISTE en la base de datos
   try {
@@ -43,5 +53,6 @@ const checkNickNameExists = async (req, res, next) => {
 module.exports = {
   checkNickNameNotExists,
   checkEmailNotExists,
-  checkNickNameExists
+  checkNickNameExists,
+  checkIdExistInUsers
 }

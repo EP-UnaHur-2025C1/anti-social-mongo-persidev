@@ -51,6 +51,24 @@ const getUserWithPosts = async (req, res) => {
     res.status(500).json({ message: 'Error en el servidor al solicitar el usuario', error })
   }
 }
+const getUserWithPost = async (req, res) => {
+  try {
+    const idUser = req.params.idUser
+    const idPost = req.params.id
+    console.log(idUser, idPost)
+    const user = await User.findOne({
+      where: { id: idUser },
+      include: {
+        model: Post,
+        where: { id: idPost }
+      }
+    })
+    res.json(user)
+  } catch (error) {
+    console.log('Error en el servidor al solicitar un usuario', error)
+    res.status(500).json({ message: 'Error en el servidor al solicitar el usuario', error })
+  }
+}
 // Post ------------------------------------------
 const createUser = async (req, res) => {
   try {
@@ -99,5 +117,6 @@ module.exports = {
   createUser,
   editUser,
   deleteUser,
-  getUserWithPosts
+  getUserWithPosts,
+  getUserWithPost
 }
