@@ -13,9 +13,6 @@ const getTagById = async (req, res) => {
 const verPosts = async (req, res) => {
   const { id } = req.params
   const tag = await Tag.findByPk(id)
-  if (!tag) {
-    return res.status(404).json({ error: 'Tag no encontrado' })
-  }
   const posts = await tag.getPosts({ joinTableAttributes: [] })
   res.status(200).json(posts)
 }
