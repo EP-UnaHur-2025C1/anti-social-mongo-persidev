@@ -1,6 +1,6 @@
 const { Router } = require('express')
 const { userControllers } = require('../controllers')
-const { User, Post } = require('../db/models')
+const { User } = require('../db/models')
 const { genericMiddlewares, userMiddlewares } = require('../middlewares')
 const { userSchema } = require('../schemas')
 const userRoutes = Router()
@@ -22,12 +22,7 @@ userRoutes.get('/:id/posts',
   genericMiddlewares.existID(User),
   userControllers.getUserWithPosts
 )
-userRoutes.get('/:idUser/post/:id',
-  genericMiddlewares.validateID(User),
-  userMiddlewares.checkIdExistInUsers,
-  genericMiddlewares.existID(Post),
-  userControllers.getUserWithPost
-)
+
 userRoutes.post('/',
   genericMiddlewares.validatorSchema(userSchema),
   userMiddlewares.checkNickNameNotExists,
