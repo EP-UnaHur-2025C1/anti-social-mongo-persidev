@@ -5,7 +5,7 @@ const { genericMiddlewares, tagMiddlewares } = require('../middlewares')
 const { tagSchema } = require('../schemas')
 const tagRoutes = Router()
 
-// Metodos
+// Rutas
 tagRoutes.get('/', tagControllers.getTags)
 
 tagRoutes.get(
@@ -14,11 +14,17 @@ tagRoutes.get(
   genericMiddlewares.existID(Tag),
   tagControllers.getTagById
 )
+// ruta para ver de un tag, segun su id, todos los posts que lo tienen asignado.
+tagRoutes.get(
+  '/:id/posts',
+  genericMiddlewares.validateID(Tag),
+  genericMiddlewares.existID(Tag),
+  tagControllers.verPosts)
 
 tagRoutes.post(
   '/',
   genericMiddlewares.validatorSchema(tagSchema),
-  // tagMiddlewares.existTag,  //crear existTag
+  tagMiddlewares.existTag,
   tagControllers.createTag
 )
 
@@ -27,7 +33,7 @@ tagRoutes.put(
   genericMiddlewares.validatorSchema(tagSchema),
   genericMiddlewares.validateID(Tag),
   genericMiddlewares.existID(Tag),
-  // tagMiddlewares.existTag,  //crear existTag
+  tagMiddlewares.existTag,
   tagControllers.updateTagById
 )
 
