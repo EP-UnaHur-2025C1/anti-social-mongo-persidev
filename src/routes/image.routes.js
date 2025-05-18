@@ -16,6 +16,12 @@ imageRoutes.post('/',
   genericMiddlewares.validatorSchema(imageSchema),
   imageControllers.createImage)
 
+imageRoutes.put('/:id',
+  genericMiddlewares.validateID(),
+  genericMiddlewares.existID(Image),
+  genericMiddlewares.validatorSchema(imageSchema),
+  imageControllers.updateImage)
+
 imageRoutes.delete('/:id',
   genericMiddlewares.validateID(),
   genericMiddlewares.existID(Image),
