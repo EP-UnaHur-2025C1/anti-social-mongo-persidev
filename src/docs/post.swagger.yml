@@ -1,17 +1,6 @@
-<<<<<<< HEAD
 tag:
   - name: Post
     description: Peticiones para realizar sobre posteos
-=======
-openapi: 3.0.0
-info:
-  title: RED ANTISOCIAL PERSIDEV
-  version: "1.0.0"
-  description: API para la red antisocial de PERSIDEV
-servers:
-  url: "http://localhost:3001"
-  description: Servidor local
->>>>>>> fc46fe98bd69f7ac02abc7636281809cd53cd38f
 components:
   schemas:
     Post:
@@ -28,7 +17,6 @@ components:
         images:
           type: array
           items:
-<<<<<<< HEAD
             type: object
             properties:
               url:
@@ -36,26 +24,6 @@ components:
                 example: "https://example.com/image.jpg"
                 description: Url de la imagen.
           description: Imagenes del posteo.
-=======
-            $ref: "#/components/schemas/Image"
-          description: Imagenes del posteo.
-    Image:
-      type: object
-      properties:
-        PostId:
-          type: integer
-          example: 1
-          description: Id del posteo al que pertenece la imagen.
-        url:
-          type: string
-          example: "https://example.com/image.jpg"
-          description: Url de la imagen.
-    User:
-    Tag:
-    Comment:
-    TagPost:
-
->>>>>>> fc46fe98bd69f7ac02abc7636281809cd53cd38f
 paths:
   /posts:
     get:
@@ -64,15 +32,6 @@ paths:
       summary: Retorna todos los posteos.
       description: Obtener todos los posteos disponibles.
       operationId: getPosts
-<<<<<<< HEAD
-=======
-      parameters:
-        - name: userId
-          in: query
-          description: Filtrar posteos por usuario.
-          schema:
-            type: string
->>>>>>> fc46fe98bd69f7ac02abc7636281809cd53cd38f
       responses:
         "200":
           description: Operacion realizada.
@@ -92,14 +51,11 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/Post"
-<<<<<<< HEAD
             example:
               UserId: 1
               description: "Este es un posteo de prueba"
               images:
                 - url: "https://example.com/image.jpg"
-=======
->>>>>>> fc46fe98bd69f7ac02abc7636281809cd53cd38f
         required: true
       responses:
         "200":
@@ -110,11 +66,7 @@ paths:
           description: No se encontraron posteos.
         "500":
           description: Error en el servidor al solicitar los posteos.
-<<<<<<< HEAD
   /posts/{id}:
-=======
-  /posts/id:
->>>>>>> fc46fe98bd69f7ac02abc7636281809cd53cd38f
     get:
       tags:
         - Post
@@ -154,13 +106,10 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/Post"
-<<<<<<< HEAD
             example:
               description: "Este es un posteo corregido"
               images:
                 - url: "https://example.com/imageAct.jpg"
-=======
->>>>>>> fc46fe98bd69f7ac02abc7636281809cd53cd38f
         required: true
       responses:
         "200":
@@ -193,11 +142,7 @@ paths:
           description: No se encontro el posteo.
         "500":
           description: Error en el servidor al solicitar el posteo.
-<<<<<<< HEAD
   /posts/{id}/images/{imageId}:
-=======
-  /posts/id/images/imageId:
->>>>>>> fc46fe98bd69f7ac02abc7636281809cd53cd38f
     put:
       tags:
         - Post
@@ -223,12 +168,231 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/Post"
-<<<<<<< HEAD
             example:
               images:
                 - url: "https://example.com/imageAct.jpg"
-=======
->>>>>>> fc46fe98bd69f7ac02abc7636281809cd53cd38f
+        required: true
+      responses:
+        "200":
+          description: Operacion realizada.
+        "400":
+          description: Error en la entrada de datos.
+        "404":
+          description: No se encontro el posteo o la imagen.
+        "500":
+          description: Error en el servidor al solicitar el posteo.
+    delete:
+      tags:
+        - Post
+      summary: Permite eliminar una imagen de un posteo por su id.
+      description: Permite eliminar una imagen de un posteo de la base de datos retornando el posteo con la imagen eliminada.
+      operationId: deletePostImage
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Id del posteo a eliminar.
+          schema:
+            type: integer
+        - name: imageId
+          in: path
+          required: true
+          description: Id de la imagen a eliminar.
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Operacion realizada.
+        "400":
+          description: Error en la entrada de datos.
+        "404":
+          description: No se encontro el posteo o la imagen.
+        "500":
+          description: Error en el servidor al solicitar el posteo.
+
+openapi: 3.0.0
+info:
+  title: RED ANTISOCIAL PERSIDEV
+  version: "1.0.0"
+  description: API para la red antisocial de PERSIDEV
+servers:
+  url: "http://localhost:3001"
+  description: Servidor local
+components:
+  schemas:
+    Post:
+      type: object
+      properties:
+        UserId:
+          type: integer
+          example: 1
+          description: Id del usuario que creo el posteo.
+        description:
+          type: string
+          example: "Este es un posteo de prueba"
+          description: Descripcion del posteo.
+        images:
+          type: array
+          items:
+            $ref: "#/components/schemas/Image"
+          description: Imagenes del posteo.
+    Image:
+      type: object
+      properties:
+        PostId:
+          type: integer
+          example: 1
+          description: Id del posteo al que pertenece la imagen.
+        url:
+          type: string
+          example: "https://example.com/image.jpg"
+          description: Url de la imagen.
+    User:
+    Tag:
+    Comment:
+    TagPost:
+
+paths:
+  /posts:
+    get:
+      tags:
+        - Post
+      summary: Retorna todos los posteos.
+      description: Obtener todos los posteos disponibles.
+      operationId: getPosts
+      parameters:
+        - name: userId
+          in: query
+          description: Filtrar posteos por usuario.
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Operacion realizada.
+        "404":
+          description: No se encontraron posteos.
+        "500":
+          description: Error en el servidor al solicitar los posteos.
+    post:
+      tags:
+        - Post
+      summary: Permite crear un posteo.
+      description: Permite crear un posteo a la base de datos retornando el posteo agregado.
+      operationId: createPost
+      requestBody:
+        description: Crea un posteo
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Post"
+        required: true
+      responses:
+        "200":
+          description: Operacion realizada.
+        "400":
+          description: Error en la entrada de datos.
+        "404":
+          description: No se encontraron posteos.
+        "500":
+          description: Error en el servidor al solicitar los posteos.
+  /posts/id:
+    get:
+      tags:
+        - Post
+      summary: Retorna un posteo por su id.
+      description: Obtener un posteo por su id.
+      operationId: getPostById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Id del posteo a buscar.
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Operacion realizada.
+        "404":
+          description: No se encontro el posteo.
+        "500":
+          description: Error en el servidor al solicitar el posteo.
+    put:
+      tags:
+        - Post
+      summary: Permite actualizar un posteo por su id.
+      description: Permite actualizar un posteo a la base de datos retornando el posteo actualizado.
+      operationId: updatePost
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Id del posteo a actualizar.
+          schema:
+            type: integer
+      requestBody:
+        description: Actualiza un posteo
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Post"
+        required: true
+      responses:
+        "200":
+          description: Operacion realizada.
+        "400":
+          description: Error en la entrada de datos.
+        "404":
+          description: No se encontro el posteo.
+        "500":
+          description: Error en el servidor al solicitar el posteo.
+    delete:
+      tags:
+        - Post
+      summary: Permite eliminar un posteo por su id.
+      description: Permite eliminar un posteo de la base de datos retornando el posteo eliminado.
+      operationId: deletePost
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Id del posteo a eliminar.
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Operacion realizada.
+        "400":
+          description: Error en la entrada de datos.
+        "404":
+          description: No se encontro el posteo.
+        "500":
+          description: Error en el servidor al solicitar el posteo.
+  /posts/id/images/imageId:
+    put:
+      tags:
+        - Post
+      summary: Permite actualizar una imagen de un posteo por su id.
+      description: Permite actualizar una imagen de un posteo en la base de datos retornando el posteo con la imagen actualizada.
+      operationId: updatePostImage
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Id del posteo a actualizar.
+          schema:
+            type: integer
+        - name: imageId
+          in: path
+          required: true
+          description: Id de la imagen a actualizar.
+          schema:
+            type: integer
+      requestBody:
+        description: Actualiza una imagen de un posteo
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Post"
         required: true
       responses:
         "200":
