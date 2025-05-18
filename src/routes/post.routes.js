@@ -15,7 +15,10 @@ postRoutes.get('/:id',
   postControllers.getPostByPk
 )
 
-// postRoutes.get('/:idPost/comments/', postControllers)
+postRoutes.get('/:id/comments',
+  genericMiddlewares.existID(Post),
+  genericMiddlewares.validateID(Post),
+  postControllers.getPostByIdWithComments)
 
 // Post
 postRoutes.post('/',

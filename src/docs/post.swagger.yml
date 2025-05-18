@@ -1,6 +1,17 @@
+<<<<<<< HEAD
 tag:
   - name: Post
     description: Peticiones para realizar sobre posteos
+=======
+openapi: 3.0.0
+info:
+  title: RED ANTISOCIAL PERSIDEV
+  version: "1.0.0"
+  description: API para la red antisocial de PERSIDEV
+servers:
+  url: "http://localhost:3001"
+  description: Servidor local
+>>>>>>> fc46fe98bd69f7ac02abc7636281809cd53cd38f
 components:
   schemas:
     Post:
@@ -17,6 +28,7 @@ components:
         images:
           type: array
           items:
+<<<<<<< HEAD
             type: object
             properties:
               url:
@@ -24,6 +36,26 @@ components:
                 example: "https://example.com/image.jpg"
                 description: Url de la imagen.
           description: Imagenes del posteo.
+=======
+            $ref: "#/components/schemas/Image"
+          description: Imagenes del posteo.
+    Image:
+      type: object
+      properties:
+        PostId:
+          type: integer
+          example: 1
+          description: Id del posteo al que pertenece la imagen.
+        url:
+          type: string
+          example: "https://example.com/image.jpg"
+          description: Url de la imagen.
+    User:
+    Tag:
+    Comment:
+    TagPost:
+
+>>>>>>> fc46fe98bd69f7ac02abc7636281809cd53cd38f
 paths:
   /posts:
     get:
@@ -32,6 +64,15 @@ paths:
       summary: Retorna todos los posteos.
       description: Obtener todos los posteos disponibles.
       operationId: getPosts
+<<<<<<< HEAD
+=======
+      parameters:
+        - name: userId
+          in: query
+          description: Filtrar posteos por usuario.
+          schema:
+            type: string
+>>>>>>> fc46fe98bd69f7ac02abc7636281809cd53cd38f
       responses:
         "200":
           description: Operacion realizada.
@@ -51,11 +92,14 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/Post"
+<<<<<<< HEAD
             example:
               UserId: 1
               description: "Este es un posteo de prueba"
               images:
                 - url: "https://example.com/image.jpg"
+=======
+>>>>>>> fc46fe98bd69f7ac02abc7636281809cd53cd38f
         required: true
       responses:
         "200":
@@ -66,7 +110,11 @@ paths:
           description: No se encontraron posteos.
         "500":
           description: Error en el servidor al solicitar los posteos.
+<<<<<<< HEAD
   /posts/{id}:
+=======
+  /posts/id:
+>>>>>>> fc46fe98bd69f7ac02abc7636281809cd53cd38f
     get:
       tags:
         - Post
@@ -106,10 +154,13 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/Post"
+<<<<<<< HEAD
             example:
               description: "Este es un posteo corregido"
               images:
                 - url: "https://example.com/imageAct.jpg"
+=======
+>>>>>>> fc46fe98bd69f7ac02abc7636281809cd53cd38f
         required: true
       responses:
         "200":
@@ -142,7 +193,11 @@ paths:
           description: No se encontro el posteo.
         "500":
           description: Error en el servidor al solicitar el posteo.
+<<<<<<< HEAD
   /posts/{id}/images/{imageId}:
+=======
+  /posts/id/images/imageId:
+>>>>>>> fc46fe98bd69f7ac02abc7636281809cd53cd38f
     put:
       tags:
         - Post
@@ -168,9 +223,12 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/Post"
+<<<<<<< HEAD
             example:
               images:
                 - url: "https://example.com/imageAct.jpg"
+=======
+>>>>>>> fc46fe98bd69f7ac02abc7636281809cd53cd38f
         required: true
       responses:
         "200":
