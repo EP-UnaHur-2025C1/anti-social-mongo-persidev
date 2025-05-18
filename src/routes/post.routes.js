@@ -1,7 +1,7 @@
 const { Router } = require("express");
-const { Post } = require("../db/models");
+const { Post, Image } = require("../db/models");
 const { postControllers } = require("../controllers");
-const { genericMiddlewares } = require("../middlewares");
+const { genericMiddlewares, postMiddlewares } = require("../middlewares");
 const { postSchema } = require("../schemas");
 const postRoutes = Router();
 
@@ -19,6 +19,7 @@ postRoutes.get(
 // Post
 postRoutes.post(
   "/",
+  postMiddlewares.canPost,
   genericMiddlewares.validatorSchema(postSchema),
   postControllers.createPost
 );
@@ -29,10 +30,18 @@ postRoutes.put(
   genericMiddlewares.validatorSchema(postSchema),
   genericMiddlewares.existID(Post),
   genericMiddlewares.validateID(Post),
+  postMiddlewares.canEditPost,
   postControllers.editPost
 );
 
-postRoutes.put("/:id/images/:imgId", postControllers.editPostImage);
+postRoutes.put(
+  "/:id/images/:imgId",
+  genericMiddlewares.existID(Post),
+  genericMiddlewares.validateID(Post),
+  genericMiddlewares.existID(Image),
+  genericMiddlewares.validateID(Image),
+  postControllers.editPostImage
+);
 
 // Delete
 postRoutes.delete(

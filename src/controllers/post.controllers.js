@@ -33,7 +33,7 @@ const getPosts = async (_, res) => {
 
     res.status(200).json({ posts: postsFiltered });
   } catch (error) {
-    console.error("Error al obtener los posts:", error);
+    console.error(`Error al obtener los posts: ${error}`);
     res.status(500).json({ error: "Error al obtener los posts" });
   }
 };
@@ -44,7 +44,7 @@ const getPostByPk = async (req, res) => {
     const post = await Post.findByPk(id);
     res.status(200).json(post);
   } catch (error) {
-    console.error("Error al obtener el post:", error);
+    console.error(`Error al obtener el post: ${error}`);
     res.status(500).json({ error: "Error al obtener el post" });
   }
 };
@@ -73,7 +73,7 @@ const createPost = async (req, res) => {
     });
     res.status(200).json(fullPost);
   } catch (error) {
-    console.error(error);
+    console.error(`Error al crear el post: ${error}`);
     res.status(500).json({ error: "Error al crear el post" });
   }
 };
@@ -88,7 +88,7 @@ const editPost = async (req, res) => {
     await postEdite.save();
     res.status(200).json(postEdite);
   } catch (error) {
-    console.error("Error al editar el post:", error);
+    console.error(`Error al editar el post: ${error}`);
     res.status(500).json({ error: "Error al editar el post" });
   }
 };
@@ -112,7 +112,7 @@ const editPostImage = async (req, res) => {
     });
     res.status(200).json(postUpdated);
   } catch (error) {
-    console.error("Error al editar la imagen del post:", error);
+    console.error(`Error al editar la imagen del post: ${error}`);
     res.status(500).json({ error: "Error al editar la imagen del post" });
   }
 };
@@ -125,7 +125,7 @@ const deletePost = async (req, res) => {
     const removed = await post.destroy();
     res.status(200).json(removed);
   } catch (error) {
-    console.error("Error al eliminar el post:", error);
+    console.error(`Error al eliminar el post: ${error}`);
     res.status(500).json({ error: "Error al eliminar el post" });
   }
 };
@@ -147,7 +147,7 @@ const deletePostImage = async (req, res) => {
     });
     res.status(200).json(postUpdated);
   } catch (error) {
-    console.error("Error al eliminar la imagen del post:", error);
+    console.error(`Error al eliminar la imagen del post: ${error}`);
     res.status(500).json({ error: "Error al eliminar la imagen del post" });
   }
 };
