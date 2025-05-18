@@ -11,22 +11,27 @@ components:
     Comment:
       type: object
       properties:
-        UserId:
-          type: integer
-          example: 1
-          description: Id del usuario que creo el posteo.
-        PostId:
-          type: integer
-          example: 1
-          description: Id del posteo al que pertenece la imagen.
         content:
           type: string
           example: "Este es un comentario de prueba"
           description: Contenido del comentario.
-        publicationDate:
-          type: dateonly
-          example: "2025-05-14"
-          description: Fecha en que se realizo el comentario.
+        UserId:
+          type: integer
+          example: 1
+          description: Id del usuario que creo el comentario.
+        PostId:
+          type: integer
+          example: 1
+          description: Id del posteo al que pertenece el comentario.
+
+    CommentInput:
+      type: object
+      properties:
+        content:
+          type: string
+          example: "nuevo comentario"
+          description: "contenido nuevo del comentario"
+
 
 tags:
   - name: Comment
@@ -57,15 +62,19 @@ paths:
       description: Crear un nuevo comentario.
       operationId: createComment
       requestBody:
-        required: true
         description: crear un nuevo comentario.
         content:
-          aplication/json:
+          application/json:
             schema:
               $ref: '#/components/schemas/Comment'
+        required: true
       responses:
         "201":
           description: Comentario creado.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Comment'
         "400":
           description: Solicitud incorrecta
         "500":
@@ -111,12 +120,16 @@ paths:
       requestBody:
         required: true
         content:
-          aplication/json:
+          application/json:
             schema:
-              $ref: '#/components/schemas/Comment'
+              $ref: '#/components/schemas/CommentInput'
       responses:
         "201":
           description: Comentario actualizado.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Comment'
         "204":
           description: No hay contenido.
         "400":
@@ -142,6 +155,10 @@ paths:
       responses:
         "200":
           description: Comentario eliminado.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Comment'
         "204":
           description: No hay contenido.
         "400":
