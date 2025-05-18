@@ -42,7 +42,7 @@ paths:
     post:
       tags:
         - Post
-      summary: Permite crear un posteo.
+      summary: Permite crear un posteo (con Imagenes opcional).
       description: Permite crear un posteo a la base de datos retornando el posteo agregado.
       operationId: createPost
       requestBody:
