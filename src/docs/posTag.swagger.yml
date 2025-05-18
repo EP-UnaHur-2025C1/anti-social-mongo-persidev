@@ -33,7 +33,7 @@ paths:
         "200":
           description: Operacion realizada.
         "404":
-          description: No se encontraron etiquetas para el posteo.
+          description: No se encontraron etiquetas.
         "500":
           description: Error en el servidor al solicitar las etiquetas del posteo.
   /post-tags:

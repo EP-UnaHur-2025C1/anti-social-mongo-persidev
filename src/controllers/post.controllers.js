@@ -1,39 +1,52 @@
-const { Post, Image, Comment, PostTag } = require("../db/models");
+const { Post, Image, Comment, Tag } = require("../db/models");
 
 // Getters
 const getPosts = async (_, res) => {
-  const posts = await Post.findAll({
-    include: [
-      {
-        model: Image,
-        attributes: ["url", "id"],
-      },
-      {
-        model: Comment,
-        attributes: ["content", "publicationDate"],
-        required: false,
-      } /* ,
-      {
-        model: PostTag,
-        attributes: ["TagId"],        <---- Asociar tabla intermedia
-        required: false,
-      }, */,
-    ],
-  }); // status
-  const postsFiltered = posts.map((post) => {
-    const visibleComments = post.Comments?.filter((c) => c.isVisible);
-    const postJSON = post.toJSON();
-    postJSON.Comments = visibleComments;
-    return postJSON;
-  });
+  try {
+    const posts = await Post.findAll({
+      include: [
+        {
+          model: Image,
+          attributes: ["url", "id"],
+        },
+        {
+          model: Comment,
+          attributes: ["content", "publicationDate"],
+          required: false,
+        },
+        {
+          model: Tag,
+          attributes: ["id", "description"],
+          through: {
+            attributes: [],
+          },
+          required: false,
+        },
+      ],
+    }); // status
+    const postsFiltered = posts.map((post) => {
+      const visibleComments = post.Comments?.filter((c) => c.isVisible);
+      const postJSON = post.toJSON();
+      postJSON.Comments = visibleComments;
+      return postJSON;
+    });
 
-  res.status(200).json({ posts: postsFiltered });
+    res.status(200).json({ posts: postsFiltered });
+  } catch (error) {
+    console.error("Error al obtener los posts:", error);
+    res.status(500).json({ error: "Error al obtener los posts" });
+  }
 };
 
 const getPostByPk = async (req, res) => {
-  const id = req.params.id;
-  const post = await Post.findByPk(id); // status
-  res.status(200).json(post);
+  try {
+    const id = req.params.id;
+    const post = await Post.findByPk(id);
+    res.status(200).json(post);
+  } catch (error) {
+    console.error("Error al obtener el post:", error);
+    res.status(500).json({ error: "Error al obtener el post" });
+  }
 };
 
 // Post
@@ -67,56 +80,76 @@ const createPost = async (req, res) => {
 
 // Put
 const editPost = async (req, res) => {
-  const { id } = req.params;
-  const { description } = req.body;
-  const postEdite = await Post.findByPk(id);
-  postEdite.description = description;
-  await postEdite.save();
-  res.json(postEdite);
+  try {
+    const { id } = req.params;
+    const { description } = req.body;
+    const postEdite = await Post.findByPk(id);
+    postEdite.description = description;
+    await postEdite.save();
+    res.status(200).json(postEdite);
+  } catch (error) {
+    console.error("Error al editar el post:", error);
+    res.status(500).json({ error: "Error al editar el post" });
+  }
 };
 
 const editPostImage = async (req, res) => {
-  const { id, imgId } = req.params;
-  const { images } = req.body;
-  const image = await Image.findByPk(imgId);
-  if (image && image.PostId == id) {
-    image.url = images[0].url;
-    await image.save();
+  try {
+    const { id, imgId } = req.params;
+    const { images } = req.body;
+    const image = await Image.findByPk(imgId);
+    if (image && image.PostId == id) {
+      image.url = images[0].url;
+      await image.save();
+    }
+    const postUpdated = await Post.findByPk(id, {
+      include: [
+        {
+          model: Image,
+          attributes: ["url", "id"],
+        },
+      ],
+    });
+    res.status(200).json(postUpdated);
+  } catch (error) {
+    console.error("Error al editar la imagen del post:", error);
+    res.status(500).json({ error: "Error al editar la imagen del post" });
   }
-  const postUpdated = await Post.findByPk(id, {
-    include: [
-      {
-        model: Image,
-        attributes: ["url", "id"],
-      },
-    ],
-  });
-  res.status(200).json(postUpdated);
 };
 
 // Delete
 const deletePost = async (req, res) => {
-  const id = req.params.id;
-  const post = await Post.findByPk(id);
-  const removed = await post.destroy();
-  res.json(removed);
+  try {
+    const id = req.params.id;
+    const post = await Post.findByPk(id);
+    const removed = await post.destroy();
+    res.status(200).json(removed);
+  } catch (error) {
+    console.error("Error al eliminar el post:", error);
+    res.status(500).json({ error: "Error al eliminar el post" });
+  }
 };
 
 const deletePostImage = async (req, res) => {
-  const { id, imgId } = req.params;
-  const image = await Image.findByPk(imgId);
-  if (image && image.PostId == id) {
-    await image.destroy();
+  try {
+    const { id, imgId } = req.params;
+    const image = await Image.findByPk(imgId);
+    if (image && image.PostId == id) {
+      await image.destroy();
+    }
+    const postUpdated = await Post.findByPk(id, {
+      include: [
+        {
+          model: Image,
+          attributes: ["url", "id"],
+        },
+      ],
+    });
+    res.status(200).json(postUpdated);
+  } catch (error) {
+    console.error("Error al eliminar la imagen del post:", error);
+    res.status(500).json({ error: "Error al eliminar la imagen del post" });
   }
-  const postUpdated = await Post.findByPk(id, {
-    include: [
-      {
-        model: Image,
-        attributes: ["url", "id"],
-      },
-    ],
-  });
-  res.status(200).json(postUpdated);
 };
 
 // Exportacion de todas las funciones
