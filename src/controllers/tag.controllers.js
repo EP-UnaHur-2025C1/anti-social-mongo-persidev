@@ -32,13 +32,13 @@ const updateTagById = async (req, res) => {
   const tagToUpdate = await Tag.findByPk(id)
   tagToUpdate.description = newDescription
   await tagToUpdate.save()
-  res.status(201).json(tagToUpdate)
+  res.status(200).json(tagToUpdate)
 }
 // Delete
 const deleteTagById = async (req, res) => {
   const data = await Tag.findByPk(req.params.id)
   const removed = await data.destroy()
-  res.status(201).json(`Etiqueta eliminada exitosamente ${removed}`)
+  res.status(200).json(`Etiqueta eliminada exitosamente ${removed}`)
 }
 
 // Exportacion de todas las funciones
