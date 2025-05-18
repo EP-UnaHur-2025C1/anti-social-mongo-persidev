@@ -1,13 +1,21 @@
 const { Image } = require('../db/models')
 
 const getImages = async (_, res) => {
-  const data = await Image.findAll({})
-  res.status(200).json(data)
+  try {
+    const data = await Image.findAll({})
+    res.status(200).json(data)
+  } catch (error) {
+    res.atatus(500).json({ message: 'Error en el servidor al intentar obtener las imagenes', error })
+  }
 }
 
 const getImageById = async (req, res) => {
-  const data = await Image.findByPk(req.params.id)
-  res.status(200).json(data)
+  try {
+    const data = await Image.findByPk(req.params.id)
+    res.status(200).json(data)
+  } catch (error) {
+    res.status(404).json({ message: 'Error al intentar obtener una imagen por su ID', error })
+  }
 }
 
 const createImage = async (req, res) => {
@@ -21,10 +29,14 @@ const createImage = async (req, res) => {
 }
 
 const deleteImageById = async (req, res) => {
-  const id = req.params.id
-  const image = await Image.findByPk(id)
-  await image.destroy()
-  res.status(200).json({ message: 'Imagen eliminada correctamente' })
+  try {
+    const id = req.params.id
+    const image = await Image.findByPk(id)
+    await image.destroy()
+    res.status(200).json({ message: 'Imagen eliminada correctamente' })
+  } catch (error) {
+    res.status(404).json({ message: 'Imagen no encontrada', error })
+  }
 }
 
 module.exports = { getImages, getImageById, deleteImageById, createImage }
