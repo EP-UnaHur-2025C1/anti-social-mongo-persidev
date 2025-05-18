@@ -11,9 +11,13 @@ const getImageById = async (req, res) => {
 }
 
 const createImage = async (req, res) => {
-  const newImage = req.body
-  const imageCreated = await Image.create(newImage)
-  res.status(201).json(imageCreated)
+  try {
+    const newImage = req.body
+    const imageCreated = await Image.create(newImage)
+    res.status(201).json(imageCreated)
+  } catch (error) {
+    res.status(400).json({ message: 'Error en la solicitud', error })
+  }
 }
 
 const deleteImageById = async (req, res) => {
