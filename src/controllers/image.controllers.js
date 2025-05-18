@@ -32,12 +32,6 @@ const updateImage = async (req, res) => {
   try {
     const { id } = req.params
     const updatedImage = await Image.findByPk(id)
-
-    if (!updatedImage) {
-      console.log(updatedImage)
-      return res.status(404).json({ message: 'Imagen no encontrada' })
-    }
-
     updatedImage.url = req.body.url
     await updatedImage.save()
     res.status(200).json(updatedImage)
