@@ -6,27 +6,51 @@ info:
 servers:
   url: "http://localhost:3001"
   description: Servidor local
-components: # Aca definen el esquema de los objetos, si incluye otra tabla como en este caso images lo ponen como el ejemplo
+components: 
   schemas:
-    Tag:
+    putTag:
       type: object
       properties:
-        UserId:
-          type: integer
-          example: 1
-          description: Id de la etiqueta.
         description:
           type: string
           example: "EstiquetaDePrueba"
           description: Descripcion de la etiqueta.
-        
+    
+    postTag:
+      type: object
+      properties:
+        description:
+          type: string
+          example: "EstiquetaDePrueba"
+          description: Descripcion de la etiqueta.
 #-----------------------------------------------------------------
 tags:
   - name: Tag
-    description: Peticiones para realizar sobre tag
-
-paths: # Aca definen las rutas
+    description: Peticiones para realizar sobre las etiquetas
+paths: 
   /tags:
+  #Post para crear etiqueta
+    post:
+      tags:
+        - Tag
+      summary: Permite crear una etiqueta.
+      description: Permite crear una etiqueta a la base de datos y retornando el id de la etiqueta agregada y la descripcion.
+      operationId: createTag
+      requestBody:
+        description: Crea una etiqueta
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/postTag"
+        required: true
+      responses:
+        "201":
+          description: Etiqueta creada.
+        "400":
+          description: Error en la entrada de datos.
+        "500":
+          description: Error en el servidor.
+  #Get para obtener todas las etiquetas
     get:
       tags:
         - Tag
@@ -36,62 +60,41 @@ paths: # Aca definen las rutas
       
       responses:
         "200":
-          description: Operacion realizada.
+          description: Lista de etiquetas disponibles.
         "404":
-          description: No se encontraron tags.
+          description: No se encontraron etiquetas.
         "500":
-          description: Error en el servidor al solicitar los tag.
+          description: Error en el servidor al solicitar las etiquetas.
 
-    post:
+  /tags/{id}:
+    delete:
       tags:
         - Tag
-      summary: Permite crear un tag.
-      description: Permite crear un tag a la base de datos y retornando el tag agregado.
-      operationId: createTag
-      requestBody:
-        description: Crea una etiqueta
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Tag"
-        required: true
-      responses:
-        "200":
-          description: Operacion realizada.
-        "400":
-          description: Error en la entrada de datos.
-        "404":
-          description: No se encontraron tag.
-        "500":
-          description: Error en el servidor al solicitar los tag.
-
-  /tags/id:
-    get:
-      tags:
-        - Tag
-      summary: Retorna un tag por su numero de id.
-      description: Obtener un tag por su id.
-      operationId: getTagById
+      summary: Elimina una etiqueta por numero de ID.
+      description: Permite eliminar una etiqueta de la base de datos retornando el tag eliminado.
+      operationId: deleteTagById
       parameters:
         - name: id
           in: path
           required: true
-          description: Id del tag a buscar.
+          description: Id del tag a eliminar.
           schema:
             type: integer
       responses:
         "200":
-          description: Operacion realizada.
+          description: Etiqueta eliminada.
+        "400":
+          description: ID invalido.
         "404":
           description: No se encontro el tag.
         "500":
-          description: Error en el servidor al solicitar el tag.
+          description: Error en el servidor al procesar la solicitud.
 
     put:
       tags:
         - Tag
-      summary: Permite actualizar un tag por su id.
-      description: Permite actualizar un tag a la base de datos retornando el tag actualizado.
+      summary: Actualizar una etiqueta por su id.
+      description: Permite actualizar una etiqueta a la base de datos retornando el tag actualizado.
       operationId: updateTagById
       parameters:
         - name: id
@@ -105,47 +108,45 @@ paths: # Aca definen las rutas
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/Tag"
+              $ref: "#/components/schemas/putTag"
         required: true
       responses:
         "200":
-          description: Operacion realizada.
+          description: Etiqueta actualizada.
         "400":
           description: Error en la entrada de datos.
         "404":
           description: No se encontro el tag.
         "500":
-          description: Error en el servidor al solicitar el tag.
+          description: Error en el servidor al procesar la solicitud.
 
-    delete:
+    get:
       tags:
         - Tag
-      summary: Permite eliminar un tag por su id.
-      description: Permite eliminar un tag de la base de datos retornando el tag eliminado.
-      operationId: deleteTagById
+      summary: Obtener una etiqueta por su id.
+      description: Retorna una etiqueta por su numero de id.
+      operationId: getTagById
       parameters:
         - name: id
           in: path
+          description: Id de la etiqueta a buscar.
           required: true
-          description: Id del tag a eliminar.
           schema:
             type: integer
       responses:
         "200":
-          description: Operacion realizada.
-        "400":
-          description: Error en la entrada de datos.
+          description: Etiqueta obtenida.
         "404":
           description: No se encontro el tag.
         "500":
-          description: Error en el servidor al solicitar el tag.
+          description: Error en el servidor al procesar la solicitud.
         
-  /tags/id/posts:
+  /tags/{id}/posts:
     get:
       tags:
         - Tag
       summary: Retorna todas los posts de una etiqueta.
-      description: Obtener un array con todos los posts que tienen asociada una etiquetas segun su id.
+      description: Obtener un array con todos los posts que tiene asociada una etiqueta segun id enviado por url.
       operationId: verPosts
       parameters:
         - name: id
@@ -156,11 +157,10 @@ paths: # Aca definen las rutas
             type: integer
       responses:
         "200":
-          description: Operacion realizada.
+          description: Posts obtenidos.
         "400":
           description: Error en la entrada de datos.
         "404":
           description: No se encontraron posteos del tag.
         "500":
           description: Error en el servidor al solicitar posteos.
-    

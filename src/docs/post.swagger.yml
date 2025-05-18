@@ -1,11 +1,6 @@
-openapi: 3.0.0
-info:
-  title: RED ANTISOCIAL PERSIDEV
-  version: "1.0.0"
-  description: API para la red antisocial de PERSIDEV
-servers:
-  url: "http://localhost:3001"
-  description: Servidor local
+tag:
+  - name: Post
+    description: Peticiones para realizar sobre posteos
 components:
   schemas:
     Post:
@@ -22,24 +17,13 @@ components:
         images:
           type: array
           items:
-            $ref: "#/components/schemas/Image"
+            type: object
+            properties:
+              url:
+                type: string
+                example: "https://example.com/image.jpg"
+                description: Url de la imagen.
           description: Imagenes del posteo.
-    Image:
-      type: object
-      properties:
-        PostId:
-          type: integer
-          example: 1
-          description: Id del posteo al que pertenece la imagen.
-        url:
-          type: string
-          example: "https://example.com/image.jpg"
-          description: Url de la imagen.
-    User:
-    Tag:
-    Comment:
-    TagPost:
-
 paths:
   /posts:
     get:
@@ -48,12 +32,6 @@ paths:
       summary: Retorna todos los posteos.
       description: Obtener todos los posteos disponibles.
       operationId: getPosts
-      parameters:
-        - name: userId
-          in: query
-          description: Filtrar posteos por usuario.
-          schema:
-            type: string
       responses:
         "200":
           description: Operacion realizada.
@@ -73,6 +51,11 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/Post"
+            example:
+              UserId: 1
+              description: "Este es un posteo de prueba"
+              images:
+                - url: "https://example.com/image.jpg"
         required: true
       responses:
         "200":
@@ -83,7 +66,7 @@ paths:
           description: No se encontraron posteos.
         "500":
           description: Error en el servidor al solicitar los posteos.
-  /posts/id:
+  /posts/{id}:
     get:
       tags:
         - Post
@@ -123,6 +106,10 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/Post"
+            example:
+              description: "Este es un posteo corregido"
+              images:
+                - url: "https://example.com/imageAct.jpg"
         required: true
       responses:
         "200":
@@ -155,7 +142,7 @@ paths:
           description: No se encontro el posteo.
         "500":
           description: Error en el servidor al solicitar el posteo.
-  /posts/id/images/imageId:
+  /posts/{id}/images/{imageId}:
     put:
       tags:
         - Post
@@ -181,6 +168,9 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/Post"
+            example:
+              images:
+                - url: "https://example.com/imageAct.jpg"
         required: true
       responses:
         "200":
