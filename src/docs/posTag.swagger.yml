@@ -15,7 +15,7 @@ components:
           example: 1
           description: Id de la etiqueta asociada al posteo.
 paths:
-  /tagposts/post/{postId}:
+  /post-tags/post/{postId}:
     get:
       tags:
         - PostTag
@@ -36,7 +36,7 @@ paths:
           description: No se encontraron etiquetas para el posteo.
         "500":
           description: Error en el servidor al solicitar las etiquetas del posteo.
-  /tagposts::
+  /post-tags:
     post:
       tags:
         - PostTag
@@ -60,7 +60,7 @@ paths:
           description: No se encontro el posteo o la etiqueta.
         "500":
           description: Error en el servidor al crear la etiqueta.
-  /tagposts/post/{postId}/tag/{tagId}:
+  /post-tags/post/{postId}/tag/{tagId}:
     delete:
       tags:
         - PostTag
