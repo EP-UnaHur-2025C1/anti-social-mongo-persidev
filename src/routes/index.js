@@ -1,9 +1,9 @@
-const tagRoutes = require("./tag.routes");
-const postRoutes = require("./post.routes");
-const userRoutes = require("./user.routes");
-const commentRoutes = require("./comment.routes");
-const postTagsRoutes = require("./tagpost.routes");
-const imageRoutes = require("./image.routes");
+const tagRoutes = require('./tag.routes')
+const postRoutes = require('./post.routes')
+const userRoutes = require('./user.routes')
+const commentRoutes = require('./comment.routes')
+const postTagsRoutes = require('./tagpost.routes')
+const imageRoutes = require('./image.routes')
 
 // Exportacion de rutas
 module.exports = {
@@ -12,5 +12,5 @@ module.exports = {
   userRoutes,
   commentRoutes,
   postTagsRoutes,
-  imageRoutes,
-};
+  imageRoutes
+}

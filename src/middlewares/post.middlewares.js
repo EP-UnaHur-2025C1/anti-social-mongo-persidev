@@ -1,39 +1,37 @@
-const { when } = require("joi");
-const { User } = require("../db/models");
-const { Post } = require("../db/models");
+const { when } = require('joi')
+const { User } = require('../db/models')
+const { Post } = require('../db/models')
 
 const canPost = async (req, res, next) => {
   try {
-    const idUser = req.params.id;
-    const userExist = await User.findOne(idUser);
-    if (!userExist)
-      res.status(404).json({ message: "No se encontro el id del usuario" });
-    next();
+    const idUser = req.params.id
+    const userExist = await User.findOne(idUser)
+    if (!userExist) { res.status(404).json({ message: 'No se encontro el id del usuario' }) }
+    next()
   } catch (error) {
-    console.error(`Error al consultar por el id de usuario: ${error}`);
+    console.error(`Error al consultar por el id de usuario: ${error}`)
     res
       .status(500)
       .json({
-        message: "Error en el servidor al consultar por el id de usuario",
-      });
+        message: 'Error en el servidor al consultar por el id de usuario'
+      })
   }
-};
+}
 
 const canEditPost = async (req, res, next) => {
   try {
-    const idUser = req.params.id;
-    const postExist = await Post.findOne(idUser); // asociar tablas
-    if (!postExist)
-      res.status(404).json({ message: "No se encontro el post del usuario" });
-    next();
+    const idUser = req.params.id
+    const postExist = await Post.findOne(idUser) // asociar tablas
+    if (!postExist) { res.status(404).json({ message: 'No se encontro el post del usuario' }) }
+    next()
   } catch (error) {
-    console.error(`Error al consultar por el post del usuario: ${error}`);
+    console.error(`Error al consultar por el post del usuario: ${error}`)
     res
       .status(500)
       .json({
-        message: "Error en el servidor al consultar por el post del usuario",
-      });
+        message: 'Error en el servidor al consultar por el post del usuario'
+      })
   }
-};
+}
 
-module.exports = { canPost, canEditPost };
+module.exports = { canPost, canEditPost }
