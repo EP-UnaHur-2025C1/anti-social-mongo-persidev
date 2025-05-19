@@ -11,6 +11,7 @@ const existID = (model) => {
     }
   }
 }
+
 const checkIdInModel = (model, idName) => {
   return async (req, res, next) => {
     const id = req.body[idName]
