@@ -1,7 +1,6 @@
 const { PostTag } = require('../db/models')
 const { Post } = require('../db/models')
 const { Tag } = require('../db/models')
-const { genericMiddlewares } = require('../middlewares')
 
 const createTagPost = async (req, res) => {
   try {
@@ -16,13 +15,11 @@ const createTagPost = async (req, res) => {
 
 const deleteTagPost = async (req, res) => {
   try {
-    genericMiddlewares.existID(Post)
-    genericMiddlewares.existID(Tag)
     const { postId, tagId } = req.params
     const post = await Post.findByPk(postId)
     const tag = await Tag.findByPk(tagId)
-    genericMiddlewares.validateID(Post)
-    genericMiddlewares.validateID(Tag)
+    if (!post) return res.status(404).json({ message: 'No se encontro el posteo con id ' + postId })
+    if (!tag) return res.status(404).json({ message: 'No se encontro el tag con id ' + postId })
     await post.removeTag(tag)
     res.status(200).json(post)
   } catch (error) {
