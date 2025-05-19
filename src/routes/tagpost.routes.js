@@ -5,12 +5,7 @@ const { genericMiddlewares } = require("../middlewares");
 const { postTagSchema } = require("../schemas");
 
 // Get
-postTagsRoutes.get(
-  "/post/:postId",
-  genericMiddlewares.existID("postId"),
-  genericMiddlewares.validateID("postId"),
-  postTagControllers.getTagsOfPost
-);
+postTagsRoutes.get("/post/:postId", postTagControllers.getTagsOfPost);
 
 // Post
 postTagsRoutes.post(
@@ -22,10 +17,6 @@ postTagsRoutes.post(
 // Delete
 postTagsRoutes.delete(
   "/post/:postId/tag/:tagId",
-  genericMiddlewares.existID("postId"),
-  genericMiddlewares.existID("tagId"),
-  genericMiddlewares.validateID("postId"),
-  genericMiddlewares.validateID("tagId"),
   postTagControllers.deleteTagPost
 );
 
