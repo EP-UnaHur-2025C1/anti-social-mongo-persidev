@@ -1,12 +1,30 @@
 const { Router } = require('express')
 const imageRoutes = Router()
+const { Image } = require('../db/models')
 const { imageControllers } = require('../controllers')
-const { existsImage } = require('../middlewares')
+const { genericMiddlewares } = require('../middlewares')
+const { imageSchema } = require('../schemas')
 
 imageRoutes.get('/', imageControllers.getImages)
 
-/* imageRoutes.get('/:id', existsImage, imageControllers.getImageById)
+imageRoutes.get('/:id',
+  genericMiddlewares.validateID(),
+  genericMiddlewares.existID(Image),
+  imageControllers.getImageById)
 
-imageRoutes.delete('/:id', existsImage, imageControllers.deleteById) */
+imageRoutes.post('/',
+  genericMiddlewares.validatorSchema(imageSchema),
+  imageControllers.createImage)
+
+imageRoutes.put('/:id',
+  genericMiddlewares.validateID(),
+  genericMiddlewares.existID(Image),
+  genericMiddlewares.validatorSchema(imageSchema),
+  imageControllers.updateImage)
+
+imageRoutes.delete('/:id',
+  genericMiddlewares.validateID(),
+  genericMiddlewares.existID(Image),
+  imageControllers.deleteImageById)
 
 module.exports = imageRoutes
