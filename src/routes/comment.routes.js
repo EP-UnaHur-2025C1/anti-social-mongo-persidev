@@ -8,7 +8,7 @@ const { commentController } = require('../controllers')
 commentRoutes.get('/', commentController.getAllComments)
 
 commentRoutes.get('/:id',
-  genericMiddlewares.validateID,
+  genericMiddlewares.validateID(),
   genericMiddlewares.existID(Comment),
   commentController.getCommentById)
 
@@ -19,12 +19,12 @@ commentRoutes.post('/',
   commentController.createComment)
 
 commentRoutes.put('/:id',
-  genericMiddlewares.validateID,
+  genericMiddlewares.validateID(),
   genericMiddlewares.existID(Comment),
   commentController.updateComment)
 
 commentRoutes.delete('/:id',
-  genericMiddlewares.validateID,
+  genericMiddlewares.validateID(),
   genericMiddlewares.existID(Comment),
   commentController.deleteCommentById)
 
