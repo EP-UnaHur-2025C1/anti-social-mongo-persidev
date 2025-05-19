@@ -53,6 +53,8 @@ npm install
 
 ```
 anti-social-relational-persidev
+├── assets/
+├── collection/
 ├── src/
 ├── .env
 ├── .gitIgnore
@@ -113,7 +115,8 @@ anti-social-relational-persidev/
 │   .gitignore         
 │   package.json     # Archivo de configuracion de nuestro servidor
 │   README.md
-├── coleccionesDePrueba/ # Colecciones para realizar pruebas
+├── assets/
+├── collections/ # Colecciones para realizar pruebas
 └── src/
     ├── app.js       # Creacion de aplicacion de express y sincronizacionde BD.
     ├── main.js 
