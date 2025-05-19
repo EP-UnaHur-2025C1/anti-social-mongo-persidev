@@ -96,41 +96,6 @@ paths:
         "500":
           description: Error interno del servidor.    
 
-    put:
-      tags:
-        - Image
-      summary: Actualizar una imagen por ID.
-      description: Actualizar una imagen por ID.
-      operationId: updateImage
-      parameters:
-        - name: id
-          in: path
-          description: ID de la imagen a actualizar
-          required: true
-          schema:
-            type: integer
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ImageInput'
-      responses:
-        "201":
-          description: imagen actualizada.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Image'
-        "204":
-          description: No hay contenido.
-        "400":
-          description: Solicitud incorrecta.
-        "404":
-          description: No se encontro la imagen.
-        "500":
-          description: Error interno del servidor.
-
     delete:
       tags:
         - Image
