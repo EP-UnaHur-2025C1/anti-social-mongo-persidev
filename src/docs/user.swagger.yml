@@ -61,7 +61,7 @@ paths:
           description: ID de un usuario
           required: true
           schema:
-            type: integer
+            type: string
       responses:
         '200':
           description: Usuario eliminado exitosamente
@@ -88,7 +88,7 @@ paths:
           description: ID de un usuario
           required: true
           schema:
-            type: integer
+            type: string
       requestBody:
         description: Editar un usuario
         content:
@@ -124,7 +124,7 @@ paths:
           description: ID de un usuario
           required: true
           schema:
-            type: integer
+            type: string
       responses:
         '200':
           description: Usuario obtenido exitosamente
@@ -178,7 +178,7 @@ paths:
           description: id del usuario
           required: true
           schema:
-            type: integer
+            type: string
       responses:
         '200':
           description: Usuario con sus posts obtenido exitosamente
@@ -201,9 +201,9 @@ components:
     User:
       type: object
       properties:
-        id: 
-          type: integer
-          example: 1
+        _id: 
+          type: object
+          example: 684f1d2d6269b2775b25c41d
         nickName:
           type: string
           example: 'unNickPrueba'
@@ -212,7 +212,7 @@ components:
           format: email
           example: unMai@algo.com
       required:
-        - id
+        - _id
         - nickName
         - email
     #Esquema de un posible input para crear un usuario
@@ -248,8 +248,8 @@ components:
       type: object
       properties:
         id:
-          type: integer
-          example: 1
+          type: object
+          example: 684f1d2d6269b2775b25c41d
         nickName:
           type: string
           example: unNickPrueba

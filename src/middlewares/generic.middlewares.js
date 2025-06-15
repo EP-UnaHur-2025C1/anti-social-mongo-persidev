@@ -2,7 +2,7 @@ const existID = (model) => {
   return async (req, res, next) => {
     try {
       const { id } = req.params
-      const existID = await model.findByPk(id)
+      const existID = await model.findById(id)
       if (!existID) return res.status(404).json({ message: 'No se encontró el id ', id })
       next()
     } catch (error) {
@@ -15,7 +15,7 @@ const existID = (model) => {
 const checkIdInModel = (model, idName) => {
   return async (req, res, next) => {
     const id = req.body[idName]
-    const oneElement = await model.findByPk(id)
+    const oneElement = await model.findById(id)
     if (!oneElement) {
       return res.status(404).json({ message: 'No existe el id' })
     }

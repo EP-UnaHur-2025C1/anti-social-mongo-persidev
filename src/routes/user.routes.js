@@ -9,16 +9,14 @@ const userRoutes = Router()
 userRoutes.get('/', userControllers.getUsers)
 
 userRoutes.get('/:id',
-  genericMiddlewares.validateID(User),
   genericMiddlewares.existID(User),
-  userControllers.getUserByPk
+  userControllers.getUserById
 )
 userRoutes.get('/nickname/:nickName',
   userMiddlewares.checkNickNameExists,
   userControllers.getUserByNickName
 )
 userRoutes.get('/:id/posts',
-  genericMiddlewares.validateID(User),
   genericMiddlewares.existID(User),
   userControllers.getUserWithPosts
 )
@@ -31,14 +29,12 @@ userRoutes.post('/',
 )
 userRoutes.put('/:id',
   genericMiddlewares.validatorSchema(userSchema),
-  genericMiddlewares.validateID(User),
   genericMiddlewares.existID(User),
   userMiddlewares.checkNickNameNotExists,
   userMiddlewares.checkEmailNotExists,
   userControllers.editUser
 )
 userRoutes.delete('/:id',
-  genericMiddlewares.validateID(User),
   genericMiddlewares.existID(User),
   userControllers.deleteUser
 )
