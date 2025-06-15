@@ -10,37 +10,37 @@ tagRoutes.get('/', tagControllers.getTags)
 
 tagRoutes.get(
   '/:id',
-  genericMiddlewares.validateID(Tag),
-  genericMiddlewares.existID(Tag),
+  // genericMiddlewares.validateID(Tag),
+  // genericMiddlewares.existID(Tag),
   tagControllers.getTagById
 )
 // ruta para ver de un tag, segun su id, todos los posts que lo tienen asignado.
-tagRoutes.get(
-  '/:id/posts',
-  genericMiddlewares.validateID(Tag),
-  genericMiddlewares.existID(Tag),
-  tagControllers.verPosts)
+// tagRoutes.get(
+//   '/:id/posts',
+//   genericMiddlewares.validateID(Tag),
+//   genericMiddlewares.existID(Tag),
+//   tagControllers.verPosts)
 
 tagRoutes.post(
   '/',
   genericMiddlewares.validatorSchema(tagSchema),
-  tagMiddlewares.existTag,
+  // tagMiddlewares.existTag,
   tagControllers.createTag
 )
 
 tagRoutes.put(
   '/:id',
   genericMiddlewares.validatorSchema(tagSchema),
-  genericMiddlewares.validateID(Tag),
-  genericMiddlewares.existID(Tag),
-  tagMiddlewares.existTag,
+  // genericMiddlewares.validateID(Tag),
+  // genericMiddlewares.existID(Tag),
+  // tagMiddlewares.existTag,
   tagControllers.updateTagById
 )
 
 tagRoutes.delete(
   '/:id',
-  genericMiddlewares.validateID(Tag),
-  genericMiddlewares.existID(Tag),
+  // genericMiddlewares.validateID(Tag),
+  // genericMiddlewares.existID(Tag),
   tagControllers.deleteTagById
 )
 
