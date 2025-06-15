@@ -3,17 +3,17 @@ const { User, Post } = require('../db/models')
 // Getters --------------------------------------------
 const getUsers = async (_, res) => {
   try {
-    const users = await User.findAll()
+    const users = await User.find()
     res.json({ users })
   } catch (error) {
     console.log('Error en el servidor al solicitar los usuarios', error)
     res.status(500).json({ message: 'Error en el servidor al solicitar los usuarios', error })
   }
 }
-const getUserByPk = async (req, res) => {
+const getUserById = async (req, res) => {
   try {
     const id = req.params.id
-    const user = await User.findByPk(id)
+    const user = await User.findById(id)
     res.json(user)
   } catch (error) {
     console.log('Error en el servidor al solicitar el usuario', error)
@@ -23,7 +23,7 @@ const getUserByPk = async (req, res) => {
 const getUserByNickName = async (req, res) => {
   try {
     const { nickName } = req.params
-    const user = await User.findOne({ where: { nickName } })
+    const user = await User.findOne({ nickName })
     res.json(user)
   } catch (error) {
     console.log('Error en el servidor al solicitar un usuario', error)
@@ -64,11 +64,13 @@ const editUser = async (req, res) => {
   try {
     const { id } = req.params
     const { nickName, email } = req.body
-    const userEdite = await User.findByPk(id)
-    userEdite.nickName = nickName
-    userEdite.email = email
-    await userEdite.save()
-    res.json(userEdite)
+    const userEdite = await User.updateOne({ _id: id }, { $set: { nickName, email } })
+    if (userEdite.modifiedCount === 1) {
+      const newUser = await User.findById(id)
+      res.json(newUser)
+    } else {
+      res.status(404).json({ message: 'No se encontro el usuario' })
+    }
   } catch (error) {
     console.log('Error en el servidor al editar un usuario', error)
     res.status(500).json({ message: 'Error en el servidor al editar el usuario', error })
@@ -79,8 +81,13 @@ const editUser = async (req, res) => {
 const deleteUser = async (req, res) => {
   try {
     const { id } = req.params
-    const userDeleted = await User.destroy({ where: { id } })
-    res.json({ userDeleted })
+    const userDeleted = await User.findById(id)
+    if (userDeleted) {
+      await User.deleteOne({ _id: id })
+      res.json({ userDeleted })
+    } else {
+      res.status(404).json({ message: 'Usuario no encontrado' })
+    }
   } catch (error) {
     console.log('Error en el servidor al intentar eliminar el usuario', error)
     res.status(500).json({ message: 'Error en el servidor', error })
@@ -91,11 +98,10 @@ const deleteUser = async (req, res) => {
 
 module.exports = {
   getUsers,
-  getUserByPk,
+  getUserById,
   getUserByNickName,
   createUser,
   editUser,
   deleteUser,
   getUserWithPosts
-
 }
