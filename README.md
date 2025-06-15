@@ -1,4 +1,4 @@
-# 🧠 UnaHur Anti-Social Net (Backend)
+# 🧠 UnaHur Anti-Social Net (Backend) v2
 
 Backend desarrollado para la red social **"UnaHur Anti-Social Net"**, un MVP académico que permite a usuarios registrados crear publicaciones, comentar, y asociar imágenes y etiquetas a los posteos.
 ![Image](./assets/logo.png)
@@ -24,6 +24,8 @@ Backend desarrollado para la red social **"UnaHur Anti-Social Net"**, un MVP aca
 
 **[ NodeJs ](https://nodejs.org/en)** **(Necesario)** Para correr el backend.
 
+**[ Docker](https://docs.docker.com/desktop/setup/install/windows-install/)** Para correr contenedor de Mongo.
+
 **[ Postman  ](https://www.postman.com/downloads/)** **(Opcional)** Para ejecutar las colecciones de prueba.
 
 **[ Visual Studio Code ](https://code.visualstudio.com/)**
@@ -33,7 +35,7 @@ Backend desarrollado para la red social **"UnaHur Anti-Social Net"**, un MVP aca
  - Abrimos una terminal bash o cmd, y ejecutamos el siguiente comando para clonar el repositorio en la PC: 
 
 ``` 
-git clone https://github.com/EP-UnaHur-2025C1/anti-social-relational-persidev.git
+git clone https://github.com/EP-UnaHur-2025C1/anti-social-mongo-persidev.git
 
 ```
 - Nos movemos a la carpeta del proyecto:
@@ -73,13 +75,20 @@ anti-social-relational-persidev
 
   - ` MONTHS = 7` para configurar la visibilidad de los comentarios de un post, por defecto son ` 6`
 
+  - ` MONGO_URI= mongodb://admin:admin123@localhost:27017/db_anti-social?authSource=admin` Configuracion de URI para conectar MONGO.
 
 #### 4. 🚀 Iniciamos el servidor:
+
+- Primero corremos docker:
+  ```
+  docker-compose up -d
+  ```
+
+- Ejecutamos nuestro servidor 
 ```
 npm run dev
 ```
 > [!NOTE]  
-> En nuestro `app.js` comentamos la linea `21` para no estar creando constantemente las tablas. Debe quedar así: `//await db.sequelize.sync({ force: true })`
 
 ## ✨ Características:
 
@@ -99,14 +108,13 @@ npm run dev
 
 * **NodeJs:** Ejecuta codigo JS en nuestro backend.
 * **ExpressJs:** Framework que facilita la creacion del servidor.
-* **Sequelize:** ORM que facilita la migracion a cualquier base de datos.
-* **Sequelize-cli:** Facilita la creacion de tablas por linea de comando.
-* **Sqlite3:** Motor de base de datos ligero para crear un backend
+* **Mongoose:** ODM que facilita la migracion a cualquier base de datos no relacional.
 * **Joi:** Crea esquemas de validación.
 * **Dotenv:** Permite acceso a las variables de entorno.
 * **Nodemon:** Ejecutar el servidor.
 * **Postman:** Ejecutar las colecciones de prueba.
-* **Swagger:** Creacion de la documentacion 
+* **Swagger:** Creacion de la documentacion
+
 ## Estructura del Proyecto
 
 ```text
@@ -116,6 +124,7 @@ anti-social-relational-persidev/
 │   package.json     # Archivo de configuracion de nuestro servidor
 │   README.md
 ├── assets/
+├── docker-compose.yml # Configuracion de docker
 ├── collections/ # Colecciones para realizar pruebas
 └── src/
     ├── app.js       # Creacion de aplicacion de express y sincronizacionde BD.
@@ -128,25 +137,23 @@ anti-social-relational-persidev/
     ├── docs/        # Configuracion de la documentacion 
     └── db/
         ├── config/      # Configuracion de BD
-        ├── migrations/  
-        ├── models/      # Modelos de nuestra BD
-        └── seeders/
+        └── models/      # Modelos de nuestra BD
 ```
 ## 🗃️ Documentación de Base de Datos
 
 
 📌 **Descripcion General:**  
-    Esta base de datos almacena la información principal para UnaHur anti-social net. Incluye tablas para usuarios, publicaciones, comentarios, tags e imagenes y sus relaciones.
+    Esta base de datos almacena la información principal para UnaHur anti-social net. Incluye documentos para usuarios, publicaciones, comentarios, tags e imagenes. La manera de relacionar cada documento es a través de referencia
  
   
 
-🏗️ **Estructura de Tablas:**
+🏗️ **Estructura de Documentos:**
 
 ##### 📋 User:
 
 | Columna    | Tipo      | Descripción                     |
 | ---------- | --------- | ------------------------------- |
-| id         | INT **(PK)**  | Identificador único del usuario |
+| _id         | ObjectID  | Identificador único del usuario |
 | nickName   | STRING   | Nombre del usuario (Unico)      |
 | email      | STRING   | Correo electrónico (único)      |
 
@@ -154,7 +161,7 @@ anti-social-relational-persidev/
 
 | Columna    | Tipo      | Descripción                     |
 | ---------- | --------- | ------------------------------- |
-| id         | INT **(PK)**  | Identificador único del Post |
+| _id         | ObjectID  | Identificador único del Post |
 | description| STRING   | Descripcion que acompaña al post      |
 | publicationDate| STRING   | Fecha de publicación del post    |
 | UserId|INT **(FK)** | FK para relacionar el usuario con el post|
@@ -163,7 +170,7 @@ anti-social-relational-persidev/
 
 | Columna    | Tipo      | Descripción                     |
 | ---------- | --------- | ------------------------------- |
-| id         | INT **(PK)**  | Identificador único de la imagen |
+| _id         | ObjectID  | Identificador único de la imagen |
 | url| STRING   | Link para acceder a la imagen      |
 | PostId|INT **(FK)** | FK para relacionar la imagen con el Post|
 
@@ -171,7 +178,7 @@ anti-social-relational-persidev/
 
 | Columna    | Tipo      | Descripción                     |
 | ---------- | --------- | ------------------------------- |
-| id         | INT **(PK)**  | Identificador único del comentario |
+| _id         | ObjectID  | Identificador único del comentario |
 | content| STRING   | Contenido del comentario   |
 |publicationDate|STRING|Fecha en que realizó el comentario|
 |UserId|INT **(FK)**| FK para relacionar el comentario con un usuario|
@@ -181,7 +188,7 @@ anti-social-relational-persidev/
 
 | Columna    | Tipo      | Descripción                     |
 | ---------- | --------- | ------------------------------- |
-| id         | INT **(PK)**  | Identificador único del Tag |
+| _id         | ObjectID  | Identificador único del Tag |
 | description| STRING   | Contenido del Tag  |  
 
 
@@ -192,20 +199,6 @@ anti-social-relational-persidev/
 - Un `Post` puede tener muchos `Comments`, pero un `Comment` pertenece a un unico `Post`.
 - Un `Post` puede tener muchas `Images`, pero una `Image` pertenece a un unico `Post`.
 - Un `Post` puede tener muchas `Tags`, y una `Tag` puede tener muchos `Posts`
-
-
-**DER**
-
-Diagrama entidad relacion de las tablas:
-
-![Imagen](./assets/DER.jpg)
-
-**MER**
-
-Modelo entidad relacion:
-
-
-![Imagen](./assets/MER.png)
 
 
 ## 📚 Documentación de la API:
