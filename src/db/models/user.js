@@ -1,45 +1,18 @@
-'use strict'
-const {
-  Model
-} = require('sequelize')
-module.exports = (sequelize, DataTypes) => {
-  class User extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate (models) {
-      User.hasMany(models.Post, {
-        foreignKey: {
-          name: 'UserId',
-          allowNull: false
-        }
-      })
-      User.hasMany(models.Comment, {
-        foreignKey: {
-          name: 'UserId',
-          allowNull: false
-        }
-      })
-    }
-  }
-  User.init({
+const mongoose = require('mongoose')
 
-    nickName: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true
-    },
-    email: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true
-    }
-  }, {
-    sequelize,
-    modelName: 'User',
-    timestamps: false
-  })
-  return User
-}
+const userSchema = new mongoose.Schema({
+  nickName: {
+    type: String,
+    unique: [true, 'El nickName debe ser único'],
+    require: [true, 'El nickName es requerido'],
+    minLength: [5, 'El nickName debe tener una longitud minima de 5 caracteres']
+  },
+  email: {
+    type: String,
+    unique: [true, 'El email debe ser único'],
+    require: [true, 'El email es requerido']
+  }
+})
+
+// Exportacion
+module.exports = mongoose.model('User', userSchema)

@@ -1,25 +1,6 @@
-'use strict'
-const { Model } = require('sequelize')
-module.exports = (sequelize, DataTypes) => {
-  class PostTag extends Model {
-    static associate (models) {
-      // No hace falta definir belongsToMany acá
-      // Las relaciones se manejan desde Post y Tag
-    }
-  }
+const mongoose = require('mongoose')
 
-  PostTag.init({
-    id: {
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
-      primaryKey: true,
-      allowNull: false
-    }
-  }, {
-    sequelize,
-    modelName: 'PostTag',
-    timestamps: false // para createdAt y updatedAt
-  })
+const postTagSchema = new mongoose.Schema()
 
-  return PostTag
-}
+// Exportacion
+module.exports = mongoose.model('PostTag', postTagSchema)
