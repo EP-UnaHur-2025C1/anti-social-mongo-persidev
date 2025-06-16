@@ -10,9 +10,6 @@ const commentSchema = new mongoose.Schema(
             type: Date,
             default: Date.now
         }
-    },
-    {
-        collection: 'posteos',
     }
   )
     
@@ -21,6 +18,12 @@ const commentSchema = new mongoose.Schema(
         const yearDifference = new Date().getFullYear() - new Date(this.get('publicationDate')).getFullYear()
         const monthDifference = new Date().getMonth() - new Date(this.get('publicationDate')).getMonth()
         return (yearDifference * 12 + monthDifference) < xMonths 
+    })
+
+    commentSchema.set('toJSON', {
+        transform: (_, ret) => {
+            delete ret.__v
+        }
     })
 
 module.exports = mongoose.model('Comment', commentSchema)
