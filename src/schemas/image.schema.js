@@ -11,7 +11,7 @@ const imageSchema = Joi.object({
       'string.pattern.base': 'La URL de la imagen debe terminar en .jpg, .jpeg, .png, .gif o .webp.',
       'string.empty': 'La URL no puede ser vacia.'
     }),
-  PostId: Joi.number()
+  PostId: Joi.string().length(24).alphanum()
 })
 
 module.exports = imageSchema

@@ -2,7 +2,7 @@ const { Image } = require('../db/models')
 
 const getImages = async (_, res) => {
   try {
-    const data = await Image.findAll()
+    const data = await Image.find()
     res.status(200).json(data)
   } catch (error) {
     console.error(`Error al obtener las imágenes: ${error}`)
@@ -14,7 +14,7 @@ const getImages = async (_, res) => {
 
 const getImageById = async (req, res) => {
   try {
-    const data = await Image.findByPk(req.params.id)
+    const data = await Image.findById(req.params.id)
     res.status(200).json(data)
   } catch (error) {
     console.error(`Error al obtener la imagen: ${error}`)
@@ -39,9 +39,8 @@ const createImage = async (req, res) => {
 
 const deleteImageById = async (req, res) => {
   try {
-    const id = req.params.id
-    const image = await Image.findByPk(id)
-    await image.destroy()
+    const _id = req.params.id
+    await Image.findOneAndDelete({ _id })
     res.status(200).json({ message: 'Imagen eliminada correctamente' })
   } catch (error) {
     console.error(`Error al eliminar la imagen: ${error}`)

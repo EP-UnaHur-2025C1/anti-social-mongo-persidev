@@ -8,7 +8,6 @@ const { imageSchema } = require('../schemas')
 imageRoutes.get('/', imageControllers.getImages)
 
 imageRoutes.get('/:id',
-  genericMiddlewares.validateID(),
   genericMiddlewares.existID(Image),
   imageControllers.getImageById)
 
@@ -17,7 +16,6 @@ imageRoutes.post('/',
   imageControllers.createImage)
 
 imageRoutes.delete('/:id',
-  genericMiddlewares.validateID(),
   genericMiddlewares.existID(Image),
   imageControllers.deleteImageById)
 
