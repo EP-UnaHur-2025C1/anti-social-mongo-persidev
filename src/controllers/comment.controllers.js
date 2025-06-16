@@ -2,7 +2,7 @@ const { Comment } = require('../db/models')
 
 const getAllComments = async (_, res) => {
   try {
-    const data = await Comment.findAll({})
+    const data = await Comment.find({})
     res.status(200).json(data)
   } catch (error) {
     res.status(500).json({ message: 'Error en el servidor al intentar obtener los comentarios', error })
@@ -11,7 +11,7 @@ const getAllComments = async (_, res) => {
 
 const getCommentById = async (req, res) => {
   try {
-    const data = await Comment.findByPk(req.params.id)
+    const data = await Comment.findById(req.params.id)
     res.status(200).json(data)
   } catch (error) {
     res.status(500).json({ message: 'Error en el servidor al obtener un comentario por ID', error })
@@ -29,20 +29,18 @@ const createComment = async (req, res) => {
 
 const updateComment = async (req, res) => {
   try {
-    const comment = await Comment.findByPk(req.params.id)
-    comment.content = req.body.content
-    await comment.save()
-    res.status(200).json(comment)
+    const _id = req.params.id
+    const commentUpdated = await Comment.findOneAndUpdate({ _id }, req.body, { new: true })
+    res.status(200).json(commentUpdated)
   } catch (error) {
-    res.status(404).json({ message: 'Comentario no encontrado', error })
+    res.status(404).json({ message: 'Error al actualizar el comentario', error })
   }
 }
 
 const deleteCommentById = async (req, res) => {
   try {
-    const comment = await Comment.findByPk(req.params.id)
-    const removed = await comment.destroy()
-    res.status(200).json(removed)
+    const commentRemoved = await Comment.findOneAndDelete({ _id: req.params.id })
+    res.status(200).json(commentRemoved)
   } catch (error) {
     res.status(404).json({ message: 'Comentario no encontrado', error })
   }

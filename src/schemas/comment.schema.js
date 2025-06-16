@@ -7,8 +7,8 @@ const schema = Joi.object({
     'string.max': 'el comentario puede tener como máximo {#limit} caracteres',
     'string.empty': 'el contenido no puede ser vacio'
   }),
-  UserId: Joi.number(),
-  PostId: Joi.number()
+  UserId: Joi.string().length(24).alphanum(),
+  PostId: Joi.string().length(24).alphanum()
 })
 
 module.exports = schema
