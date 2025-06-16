@@ -1,45 +1,75 @@
 const { Tag } = require('../db/models')
-// Get
+
+// Get para todos los tag
 const getTags = async (_, res) => {
-  const data = await Tag.findAll({})
-  res.status(200).json({ data })
-}
-// Get
-const getTagById = async (req, res) => {
-  const data = await Tag.findByPk(req.params.id)
-  res.status(200).json(data)
-}
-// Get para ver los posts que tienen el tag del id x
-const verPosts = async (req, res) => {
-  const { id } = req.params
-  const tag = await Tag.findByPk(id)
-  const posts = await tag.getPosts({ joinTableAttributes: [] })
-  res.status(200).json(posts)
-}
-// Post
-const createTag = async (req, res) => {
   try {
-    const newTag = await Tag.create(req.body)
-    res.status(201).json(newTag)
-  } catch (e) {
-    res.status(400).json({ error: e })
+    const data = await Tag.find()
+    res.status(200).json(data)
+  } catch (error) {
+    res.status(500).json({ error: error.message })
   }
 }
-// Put
-const updateTagById = async (req, res) => {
-  const id = req.params.id
-  const newDescription = req.body.description
-  const tagToUpdate = await Tag.findByPk(id)
-  tagToUpdate.description = newDescription
-  await tagToUpdate.save()
-  res.status(200).json(tagToUpdate)
-}
-// Delete
-const deleteTagById = async (req, res) => {
-  const data = await Tag.findByPk(req.params.id)
-  const removed = await data.destroy()
-  res.status(200).json(`Etiqueta eliminada exitosamente ${removed}`)
+
+// Get para ver un tag por id
+const getTagById = async (req, res) => {
+  try {
+    const data = await Tag.findById(req.params.id)
+    if (!data) {
+      return res.status(404).json({ message: 'No se encontro la etiqueta' })
+    }
+    res.status(200).json(data)
+  } catch (error) {
+    res.status(500).json({ error: error.message })
+  }
 }
 
+// Post para crear un tag
+const createTag = async (req, res) => {
+  try {
+    const nuevoTag = new Tag(req.body)
+    await nuevoTag.save()
+    res.status(201).json(nuevoTag)
+  } catch (error) {
+    res.status(400).json({ error: error.message })
+  }
+}
+
+// Put para modificar un tag
+const updateTagById = async (req, res) => {
+  try {
+    const tagToUpdate = await Tag.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+      runValidators: true
+    })
+    if (!tagToUpdate) {
+      return res.status(404).json({ mensaje: 'Etiqueta no encontradada' })
+    }
+    res.json({ mensaje: 'Etiqueta actualizadada', description: tagToUpdate })
+  } catch (error) {
+    res.status(400).json({ mensaje: 'Error al actualizar la etiqueta', error })
+  }
+}
+
+// Delete
+const deleteTagById = async (req, res) => {
+  try {
+    const data = await Tag.findByIdAndDelete(req.params.id)
+    if (!data) {
+      return res.status(404).json({ mensaje: 'Etiqueta no encontrada' })
+    }
+    res.json({ mensaje: 'Etiqueta eliminada', description: data })
+  } catch (error) {
+    res.status(500).json({ mensaje: 'Error al eliminar la etiqueta', error })
+  }
+}
+
+// // Get para ver los posts que tienen el tag del id x
+// const verPosts = async (req, res) => {
+//   const { id } = req.params
+//   const tag = await Tag.findByPk(id)
+//   const posts = await tag.getPosts({ joinTableAttributes: [] })
+//   res.status(200).json(posts)
+// }
+
 // Exportacion de todas las funciones
-module.exports = { getTags, createTag, getTagById, deleteTagById, updateTagById, verPosts }
+module.exports = { getTags, createTag, getTagById, deleteTagById, updateTagById /* verPosts */ }
