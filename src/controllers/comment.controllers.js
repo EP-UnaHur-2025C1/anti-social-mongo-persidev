@@ -30,16 +30,10 @@ const createComment = async (req, res) => {
 const updateComment = async (req, res) => {
   try {
     const _id = req.params.id
-
-    const commentUpdated = await Comment.findOneAndUpdate(
-      { _id },
-      { $set: { content: req.body.params } },
-      { new: true }
-    )
-
+    const commentUpdated = await Comment.findOneAndUpdate({ _id }, req.body, { new: true })
     res.status(200).json(commentUpdated)
   } catch (error) {
-    res.status(404).json({ message: 'Comentario no encontrado', error })
+    res.status(404).json({ message: 'Error al actualizar el comentario', error })
   }
 }
 

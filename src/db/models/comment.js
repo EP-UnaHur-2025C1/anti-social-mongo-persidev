@@ -9,6 +9,14 @@ const commentSchema = new mongoose.Schema(
         publicationDate: {
             type: Date,
             default: Date.now
+        },
+        UserId: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User'
+        },
+        PostId: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Post'
         }
     }
   )
