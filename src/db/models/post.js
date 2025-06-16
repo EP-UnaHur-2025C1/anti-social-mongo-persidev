@@ -11,7 +11,7 @@ const postSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-  userId: {
+  user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
     required: true,
@@ -26,6 +26,12 @@ const postSchema = new mongoose.Schema({
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Tag",
+    },
+  ],
+  images: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Image",
     },
   ],
 });
