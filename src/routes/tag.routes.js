@@ -15,12 +15,12 @@ tagRoutes.get(
   tagControllers.getTagById
 )
 // ruta para ver de un tag, segun su id, todos los posts que lo tienen asignado.
-tagRoutes.get(
+/* tagRoutes.get(
   '/:id/posts',
   genericMiddlewares.validateID(Tag),
   genericMiddlewares.existID(Tag),
   tagControllers.verPosts)
-
+ */
 tagRoutes.post(
   '/',
   genericMiddlewares.validatorSchema(tagSchema),

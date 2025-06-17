@@ -4,7 +4,7 @@ const { User } = require('../db/models')
 const canPost = async (req, res, next) => {
   try {
     const idUser = req.params.id
-    const userExist = await User.findOne(idUser)
+    const userExist = await User.findById(idUser)
     if (!userExist) {
       res.status(404).json({ message: 'No se encontro el id del usuario' })
     }

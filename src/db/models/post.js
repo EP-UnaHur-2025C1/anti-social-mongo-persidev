@@ -1,5 +1,4 @@
 const mongoose = require('mongoose')
-const user = require('./user')
 
 const postSchema = new mongoose.Schema({
   description: {
@@ -11,10 +10,9 @@ const postSchema = new mongoose.Schema({
     type: Date,
     default: Date.now
   },
-  user: {
+  UserId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
-    required: true
+    ref: 'User'
   },
   comments: [
     {
