@@ -7,7 +7,7 @@ const postTagSchema = Joi.object({
     'string.max': 'La descripción debe tener {#limit} caracteres como máximo',
     'string.base': 'La descripción tiene que ser un string'
   }),
-  UserId: Joi.number(),
+  UserId: Joi.string(),
   images: Joi.array()
     .items(
       Joi.object({
