@@ -6,6 +6,7 @@ info:
 servers:
   url: "http://localhost:3001"
   description: Servidor local
+# Schema
 components: 
   schemas:
     putTag:
@@ -79,7 +80,7 @@ paths:
           required: true
           description: Id del tag a eliminar.
           schema:
-            type: integer
+            type: string
       responses:
         "200":
           description: Etiqueta eliminada.
@@ -102,7 +103,7 @@ paths:
           required: true
           description: Id del tag a actualizar.
           schema:
-            type: integer
+            type: string
       requestBody:
         description: Actualiza un tag
         content:
@@ -132,7 +133,7 @@ paths:
           description: Id de la etiqueta a buscar.
           required: true
           schema:
-            type: integer
+            type: string
       responses:
         "200":
           description: Etiqueta obtenida.
@@ -141,26 +142,3 @@ paths:
         "500":
           description: Error en el servidor al procesar la solicitud.
         
-  /tags/{id}/posts:
-    get:
-      tags:
-        - Tag
-      summary: Retorna todas los posts de una etiqueta.
-      description: Obtener un array con todos los posts que tiene asociada una etiqueta segun id enviado por url.
-      operationId: verPosts
-      parameters:
-        - name: id
-          in: path
-          required: true
-          description: Id de la etiqueta a buscar sus posts.
-          schema:
-            type: integer
-      responses:
-        "200":
-          description: Posts obtenidos.
-        "400":
-          description: Error en la entrada de datos.
-        "404":
-          description: No se encontraron posteos del tag.
-        "500":
-          description: Error en el servidor al solicitar posteos.
