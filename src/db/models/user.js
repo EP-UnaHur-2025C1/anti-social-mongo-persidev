@@ -11,7 +11,8 @@ const userSchema = new mongoose.Schema({
     type: String,
     unique: [true, 'El email debe ser único'],
     require: [true, 'El email es requerido']
-  }
+  },
+  posts: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Post' }]
 })
 
 // Exportacion

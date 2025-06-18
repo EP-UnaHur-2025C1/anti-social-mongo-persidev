@@ -1,4 +1,4 @@
-const { Post, Image, Comment, Tag, User } = require("../db/models");
+const { Post, Image, User } = require("../db/models");
 
 // Getters
 const getPosts = async (_, res) => {
@@ -66,7 +66,9 @@ const createPost = async (req, res) => {
     }
     postCreated.images = imageIds;
     await postCreated.save();
-
+    await User.findByIdAndUpdate(UserId, {
+      $push: { posts: postCreated._id }
+    })
     const fullPost = await Post.findById(postCreated._id).populate(
       "images",
       "url"

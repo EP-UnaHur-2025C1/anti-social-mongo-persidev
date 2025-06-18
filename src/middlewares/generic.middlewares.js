@@ -1,7 +1,13 @@
+const mongoose = require('mongoose')
 const existID = (model) => {
   return async (req, res, next) => {
     try {
       const { id } = req.params
+      // Validar si el ID es un ObjectId válido
+      if (!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(400).json({ message: 'ID inválido' })
+      }
+
       const existID = await model.findById(id)
       if (!existID) return res.status(404).json({ message: 'No se encontró el id ', id })
       next()

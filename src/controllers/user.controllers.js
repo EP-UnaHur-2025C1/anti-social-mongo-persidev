@@ -1,9 +1,9 @@
-const { User, Post } = require('../db/models')
+const { User } = require('../db/models')
 
 // Getters --------------------------------------------
 const getUsers = async (_, res) => {
   try {
-    const users = await User.find()
+    const users = await User.find().populate('posts')
     res.json({ users })
   } catch (error) {
     console.log('Error en el servidor al solicitar los usuarios', error)
@@ -23,7 +23,7 @@ const getUserById = async (req, res) => {
 const getUserByNickName = async (req, res) => {
   try {
     const { nickName } = req.params
-    const user = await User.findOne({ nickName })
+    const user = await User.findOne({ nickName }).populate('posts')
     res.json(user)
   } catch (error) {
     console.log('Error en el servidor al solicitar un usuario', error)
@@ -34,13 +34,9 @@ const getUserByNickName = async (req, res) => {
 const getUserWithPosts = async (req, res) => {
   try {
     const { id } = req.params
-    const userFind = await User.findOne({
-      where: { id },
-      include: {
-        model: Post,
-        attributes: ['description', 'publicationDate']
-      }
-    })
+    const userFind = await User.findById(id).populate('posts')
+    // const posts = await Post.find({ UserId: id })
+    // userFind.posts = posts
     res.json(userFind)
   } catch (error) {
     console.log('Error en el servidor al solicitar un usuario', error)
@@ -84,7 +80,7 @@ const deleteUser = async (req, res) => {
     const userDeleted = await User.findById(id)
     if (userDeleted) {
       await User.deleteOne({ _id: id })
-      res.json({ userDeleted })
+      res.json(userDeleted)
     } else {
       res.status(404).json({ message: 'Usuario no encontrado' })
     }

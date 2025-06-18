@@ -70,7 +70,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/User'
         '400':
-          description: El id dado es invalido
+          description: El id dado es invalido(debe ser un hexadecimal de 24 caracteres)
         '404':
           description: No se encontró un usuario con el id dado.
         '500':
@@ -133,7 +133,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/User'
         '400':
-          description: El ID ingresado es inválido (por ejemplo, no es un entero positivo)
+          description: El ID ingresado es inválido (debe ser un hexadecimal de 24 caracteres)
         '404':
           description: No se encontró un usuario con el id dado.
         '500':
@@ -187,7 +187,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/UserPost'
         '400':
-          description: El id ingresado es inválido (por ejemplo, no es un entero positivo)
+          description: El id ingresado es inválido (debe ser un hexadecimal de 24 caracteres)
         '404':
           description: No se encontró un usuario con el id dado .
         '500':
