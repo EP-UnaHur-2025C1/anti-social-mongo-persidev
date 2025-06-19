@@ -28,7 +28,7 @@ const createImage = async (req, res) => {
   try {
     const newImage = req.body
     const imageCreated = await Image.create(newImage)
-    res.status(200).json(imageCreated)
+    res.status(201).json(imageCreated)
   } catch (error) {
     console.error(`Error al crear la imagen: ${error}`)
     res
