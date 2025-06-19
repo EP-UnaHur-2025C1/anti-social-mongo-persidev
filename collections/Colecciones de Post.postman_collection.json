@@ -115,7 +115,7 @@
 					"host": [
 						"localhost"
 					],
-					"port": "3001",
+					"port": "3000",
 					"path": [
 						"posts"
 					]
@@ -187,7 +187,7 @@
 							"host": [
 								"localhost"
 							],
-							"port": "3001",
+							"port": "3000",
 							"path": [
 								"posts",
 								"12"
@@ -521,7 +521,7 @@
 					"host": [
 						"localhost"
 					],
-					"port": "3001",
+					"port": "3000",
 					"path": [
 						"posts"
 					]
