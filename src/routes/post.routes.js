@@ -2,7 +2,7 @@ const { Router } = require("express");
 const { Post, User } = require("../db/models");
 const { postControllers } = require("../controllers");
 const { genericMiddlewares, postMiddlewares } = require("../middlewares");
-const { postSchema } = require("../schemas");
+const { postSchema, tagSchema } = require("../schemas");
 const postRoutes = Router();
 
 // Metodos
@@ -23,6 +23,13 @@ postRoutes.post(
   postControllers.createPost
 );
 
+postRoutes.post(
+  "/:id",
+  genericMiddlewares.existID(Post),
+  genericMiddlewares.validatorSchema(tagSchema),
+  postControllers.createTagPost
+);
+
 // Put
 postRoutes.put(
   "/:id",
@@ -41,6 +48,8 @@ postRoutes.delete(
 );
 
 postRoutes.delete("/:id/images/:imgId", postControllers.deletePostImage);
+
+postRoutes.delete("/:postId/tag/:tagId",postControllers.deleteTagPost);
 
 // Exportacion
 module.exports = postRoutes;
