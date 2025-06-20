@@ -7,23 +7,31 @@ components:
       type: object
       properties:
         UserId:
-          type: integer
-          example: 1
-          description: Id del usuario que creo el posteo.
+          type: string
+          example: "684f1d2d6269b2775b25c41d"
+          description: Id del usuario que creó el post.
         description:
           type: string
           example: "Este es un posteo de prueba"
-          description: Descripcion del posteo.
+          description: Descripción del posteo.
         images:
           type: array
+          description: Imágenes del posteo.
           items:
             type: object
             properties:
               url:
                 type: string
                 example: "https://example.com/image.jpg"
-                description: Url de la imagen.
-          description: Imagenes del posteo.
+                description: URL de la imagen.
+    Tag:
+      type: object
+      properties:
+        description:
+          type: string
+          example: "Descripcion del tag"
+          description: Descripción del tag.
+
 paths:
   /posts:
     get:
@@ -52,7 +60,7 @@ paths:
             schema:
               $ref: "#/components/schemas/Post"
             example:
-              UserId: 1
+              UserId: "684f1d2d6269b2775b25c41d"
               description: "Este es un posteo de prueba"
               images:
                 - url: "https://example.com/image.jpg"
@@ -63,9 +71,9 @@ paths:
         "400":
           description: Error en la entrada de datos.
         "404":
-          description: No se encontraron posteos.
+          description: No se encontro el usuario.
         "500":
-          description: Error en el servidor al solicitar los posteos.
+          description: Error en el servidor al crear el posteo.
   /posts/{id}:
     get:
       tags:
@@ -79,7 +87,7 @@ paths:
           required: true
           description: Id del posteo a buscar.
           schema:
-            type: integer
+            type: string
       responses:
         "200":
           description: Operacion realizada.
@@ -87,6 +95,30 @@ paths:
           description: No se encontro el posteo.
         "500":
           description: Error en el servidor al solicitar el posteo.
+    post:
+      tags:
+        - Post
+      summary: Permite crear un tag a un posteo.
+      description: Permite crear un tag a la base de datos retornando el posteo con el tag agregado.
+      operationId: createPostTag
+      requestBody:
+        description: Crea un tag a un posteo
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Tag"
+            example:
+              description: "Este es un tag de prueba"
+        required: true
+      responses:
+        "200":
+          description: Operacion realizada.
+        "400":
+          description: Error en la entrada de datos.
+        "404":
+          description: No se encontraron posteos.
+        "500":
+          description: Error en el servidor al intentar crear la etiqueta.
     put:
       tags:
         - Post
@@ -99,7 +131,7 @@ paths:
           required: true
           description: Id del posteo a actualizar.
           schema:
-            type: integer
+            type: string
       requestBody:
         description: Actualiza un posteo
         content:
@@ -119,7 +151,7 @@ paths:
         "404":
           description: No se encontro el posteo.
         "500":
-          description: Error en el servidor al solicitar el posteo.
+          description: Error en el servidor al editar el posteo.
     delete:
       tags:
         - Post
@@ -132,7 +164,7 @@ paths:
           required: true
           description: Id del posteo a eliminar.
           schema:
-            type: integer
+            type: string
       responses:
         "200":
           description: Operacion realizada.
@@ -141,7 +173,7 @@ paths:
         "404":
           description: No se encontro el posteo.
         "500":
-          description: Error en el servidor al solicitar el posteo.
+          description: Error en el servidor al eliminar el posteo.
   /posts/{id}/images/{imageId}:
     put:
       tags:
@@ -180,7 +212,7 @@ paths:
         "404":
           description: No se encontro el posteo o la imagen.
         "500":
-          description: Error en el servidor al solicitar el posteo.
+          description: Error en el servidor al editar la imagen de un posteo.
     delete:
       tags:
         - Post
@@ -208,4 +240,31 @@ paths:
         "404":
           description: No se encontro el posteo o la imagen.
         "500":
-          description: Error en el servidor al solicitar el posteo.
+          description: Error en el servidor al eliminar la imagen de un posteo.
+  /posts/{postId}/tag/{tagId}:
+    delete:
+      tags:
+        - Post
+      summary: Permite eliminar una etiqueta de un posteo.
+      description: Eliminar una etiqueta de un posteo existente.
+      operationId: deletePostTag
+      parameters:
+        - name: postId
+          in: path
+          required: true
+          description: Id del posteo al que pertenece la etiqueta.
+          schema:
+            type: string
+        - name: tagId
+          in: path
+          required: true
+          description: Id de la etiqueta a eliminar.
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Operacion realizada.
+        "404":
+          description: No se encontro el posteo o la etiqueta.
+        "500":
+          description: Error en el servidor al eliminar la etiquetade un posteo.
