@@ -10,19 +10,16 @@ components:
           pattern: "\\.(jpg|jpeg|png|gif|webp)$"
           description: URL de imagen.
         PostId:
-          type: integer
-          example: 1
+          type: string
+          example: "a3f9b872d4c1e5aa9f3d7b2c"
           description: Id del posteo al que pertenece la imagen.
 
-    ImageInput:
+    ImageDeleted:
       type: object
       properties:
-        url:
+        message:
           type: string
-          format: uri
-          example: "http://nuevaImagenDePrueba.png"
-          pattern: "\\.(jpg|jpeg|png|gif|webp)$"
-          description: URL de imagen.
+          example: "imagen eliminada correctamente"
 
 
 tags:
@@ -85,7 +82,7 @@ paths:
           description: ID de la imagen a consultar
           required: true
           schema:
-            type: integer
+            type: string
       responses:
         "200":
           description: imagen devuelta.
@@ -108,14 +105,14 @@ paths:
           description: ID de la imagen a eliminar
           required: true
           schema:
-            type: integer
+            type: string
       responses:
         "200":
           description: imagen eliminada.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Image'
+                $ref: '#/components/schemas/ImageDeleted'
         "204":
           description: No hay contenido.
         "400":
