@@ -1,15 +1,57 @@
 {
 	"info": {
-		"_postman_id": "3a20d1e3-c507-40cf-a95d-bb94efbf2a1a",
+		"_postman_id": "be99c39c-99aa-4955-af84-ed7d822fb39c",
 		"name": "Coleccion de Comentarios",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
 		"_exporter_id": "45054739",
-		"_collection_link": "https://melinaalvarez.postman.co/workspace/Melina-Alvarez's-Workspace~36226261-443b-4f1a-86a4-b2416b8081fd/collection/45054739-3a20d1e3-c507-40cf-a95d-bb94efbf2a1a?action=share&source=collection_link&creator=45054739"
+		"_collection_link": "https://melinaalvarez.postman.co/workspace/persidev-mongo~541071af-d1d0-4304-9cbc-35ba5c2506d9/collection/45054739-be99c39c-99aa-4955-af84-ed7d822fb39c?action=share&source=collection_link&creator=45054739"
 	},
 	"item": [
 		{
 			"name": "Creación de comentarios",
 			"item": [
+				{
+					"name": "Creacion de un user",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nickName\": \"melina\",\r\n    \"email\": \"melina@gmail.com\" \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/users"
+					},
+					"response": []
+				},
+				{
+					"name": "Creacion de post",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"posteo de prueba\",\r\n    \"UserId\": \"68542e334ac39fa504db4f35\",\r\n    \"images\": []\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/posts"
+					},
+					"response": []
+				},
 				{
 					"name": "Creación de comentario 1 correctamente",
 					"request": {
@@ -20,24 +62,14 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"content\": \"Este es el primer comentario :).\",\r\n    \"UserId\": 1,\r\n    \"PostId\": 1\r\n}",
+							"raw": "{\r\n    \"content\": \"Este es el primer comentario :).\",\r\n    \"UserId\": \"68542e334ac39fa504db4f35\",\r\n    \"PostId\": \"68542f5a4ac39fa504db4f3a\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": {
-							"raw": "http://localhost:3000/comments",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"comments"
-							]
-						}
+						"url": "http://localhost:3000/comments"
 					},
 					"response": []
 				},
@@ -51,24 +83,14 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"content\": \"Este es el comentario a eliminar\",\r\n    \"UserId\": 1,\r\n    \"PostId\": 1\r\n}",
+							"raw": "{\r\n    \"content\": \"Este es el comentario a eliminar\",\r\n    \"UserId\": \"68542e334ac39fa504db4f35\",\r\n    \"PostId\": \"68542f5a4ac39fa504db4f3a\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": {
-							"raw": "http://localhost:3000/comments",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"comments"
-							]
-						}
+						"url": "http://localhost:3000/comments"
 					},
 					"response": []
 				},
@@ -82,24 +104,14 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"content\": \"Espero que mañana no llueva :(\",\r\n    \"UserId\": 1,\r\n    \"PostId\": 1\r\n}",
+							"raw": "{\r\n    \"content\": \"Espero que mañana no llueva :(\",\r\n    \"UserId\": \"68542e334ac39fa504db4f35\",\r\n    \"PostId\": \"68542f5a4ac39fa504db4f3a\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": {
-							"raw": "http://localhost:3000/comments",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"comments"
-							]
-						}
+						"url": "http://localhost:3000/comments"
 					},
 					"response": []
 				},
@@ -113,24 +125,14 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"content\": \"Aguante PersiDev\",\r\n    \"UserId\": 1,\r\n    \"PostId\": 1\r\n}",
+							"raw": "{\r\n    \"content\": \"Aguante PersiDev\",\r\n    \"UserId\": \"68542e334ac39fa504db4f35\",\r\n    \"PostId\": \"68542f5a4ac39fa504db4f3a\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": {
-							"raw": "http://localhost:3000/comments",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"comments"
-							]
-						}
+						"url": "http://localhost:3000/comments"
 					},
 					"response": []
 				},
@@ -144,24 +146,14 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"content\": \"creando comentario con FK inexistentes\",\r\n    \"UserId\": 200,\r\n    \"PostId\": 350\r\n}",
+							"raw": "{\r\n    \"content\": \"creando comentario con FK inexistentes\",\r\n    \"UserId\": \"68542e334ac39fa504db4f22\",\r\n    \"PostId\": \"68542f5a4ac39fa504db4f2b\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": {
-							"raw": "http://localhost:3000/comments",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"comments"
-							]
-						}
+						"url": "http://localhost:3000/comments"
 					},
 					"response": []
 				},
@@ -175,24 +167,14 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"content\": \"\",\r\n    \"UserId\": 1,\r\n    \"PostId\": 1\r\n}",
+							"raw": "{\r\n    \"content\": \"\",\r\n    \"UserId\": \"68542e334ac39fa504db4f35\",\r\n    \"PostId\": \"68542f5a4ac39fa504db4f3a\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": {
-							"raw": "http://localhost:3000/comments",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"comments"
-							]
-						}
+						"url": "http://localhost:3000/comments"
 					},
 					"response": []
 				},
@@ -206,24 +188,14 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"content\": \"Probando crear un comentario que exceda el limite de 60 caracteres. Mientras intento llegar a ese límite voy a escribir cosas sin sentido asi que no vale la pena leer esto.\",\r\n    \"UserId\": 1,\r\n    \"PostId\": 1\r\n}",
+							"raw": "{\r\n    \"content\": \"Probando crear un comentario que exceda el limite de 60 caracteres. Mientras intento llegar a ese límite voy a escribir cosas sin sentido asi que no vale la pena leer esto.\",\r\n    \"UserId\": \"68542e334ac39fa504db4f35\",\r\n    \"PostId\": \"68542f5a4ac39fa504db4f3a\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": {
-							"raw": "http://localhost:3000/comments",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"comments"
-							]
-						}
+						"url": "http://localhost:3000/comments"
 					},
 					"response": []
 				}
@@ -233,60 +205,20 @@
 			"name": "Modificación de comentarios",
 			"item": [
 				{
-					"name": "Modificar comentario 1",
+					"name": "Modificar comentario",
 					"request": {
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"content\": \"probando modificar el comentario 1.\"\r\n}",
+							"raw": "{\r\n    \"content\": \"probando modificar un comentario.\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": {
-							"raw": "http://localhost:3000/comments/1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"comments",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Modificar comentario con ID inválido",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"content\": \"probando modificar un comentario pero ingresando un ID inválido\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:3000/comments/-1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"comments",
-								"-1"
-							]
-						}
+						"url": "http://localhost:3000/comments/68542fdb4ac39fa504db4f49"
 					},
 					"response": []
 				},
@@ -304,18 +236,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "http://localhost:3000/comments/250",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"comments",
-								"250"
-							]
-						}
+						"url": "http://localhost:3000/comments/68542f5a4ac39fa504db4f2b"
 					},
 					"response": []
 				}
@@ -336,17 +257,7 @@
 					"mode": "raw",
 					"raw": "{\r\n  \"description\": \"Este es un comentario de prueba de carlitos\",\r\n  \"UserId\": 1\r\n}"
 				},
-				"url": {
-					"raw": "http://localhost:3000/comments",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"comments"
-					]
-				}
+				"url": "http://localhost:3000/comments"
 			},
 			"response": []
 		},
@@ -362,18 +273,7 @@
 					"mode": "raw",
 					"raw": ""
 				},
-				"url": {
-					"raw": "http://localhost:3000/comments/2",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"comments",
-						"2"
-					]
-				}
+				"url": "http://localhost:3000/comments/68542fdb4ac39fa504db4f45"
 			},
 			"response": []
 		}
