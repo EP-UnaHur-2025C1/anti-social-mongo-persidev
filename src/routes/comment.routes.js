@@ -1,13 +1,14 @@
 const { Router } = require('express')
 const commentRoutes = Router()
 const { Comment, User, Post } = require('../db/models')
-const { genericMiddlewares } = require('../middlewares')
+const { genericMiddlewares, cacheMiddlewares } = require('../middlewares')
 const { commentSchema } = require('../schemas')
 const { commentController } = require('../controllers')
 
-commentRoutes.get('/', commentController.getAllComments)
+commentRoutes.get('/', cacheMiddlewares.checkCache('all_comments'), commentController.getAllComments)
 
 commentRoutes.get('/:id',
+  cacheMiddlewares.checkCache('comment'),
   genericMiddlewares.existID(Comment),
   commentController.getCommentById)
 
@@ -22,6 +23,7 @@ commentRoutes.put('/:id',
   commentController.updateComment)
 
 commentRoutes.delete('/:id',
+  cacheMiddlewares.deleteCache('comment'),
   genericMiddlewares.existID(Comment),
   commentController.deleteCommentById)
 

@@ -1,8 +1,10 @@
 const { Image } = require('../db/models')
+const redisClient = require('../cache/redis')
 
 const getImages = async (_, res) => {
   try {
     const data = await Image.find()
+    redisClient.set('all_images', JSON.stringify(data), { EX: process.env.TTL })
     res.status(200).json(data)
   } catch (error) {
     console.error(`Error al obtener las imágenes: ${error}`)
@@ -14,7 +16,9 @@ const getImages = async (_, res) => {
 
 const getImageById = async (req, res) => {
   try {
-    const data = await Image.findById(req.params.id)
+    const id = req.params.id
+    const data = await Image.findById(id)
+    redisClient.set(`image-${id}`, JSON.stringify(data), { EX: process.env.TTL })
     res.status(200).json(data)
   } catch (error) {
     console.error(`Error al obtener la imagen: ${error}`)

@@ -1,8 +1,10 @@
 const { Comment } = require('../db/models')
+const redisClient = require('../cache/redis')
 
 const getAllComments = async (_, res) => {
   try {
     const data = await Comment.find({})
+    redisClient.set('all_comments', JSON.stringify(data), { EX: process.env.TTL })
     res.status(200).json(data)
   } catch (error) {
     res.status(500).json({ message: 'Error en el servidor al intentar obtener los comentarios', error })
@@ -11,7 +13,9 @@ const getAllComments = async (_, res) => {
 
 const getCommentById = async (req, res) => {
   try {
-    const data = await Comment.findById(req.params.id)
+    const id = req.params.id
+    const data = await Comment.findById(id)
+    redisClient.set(`comment-${id}`, JSON.stringify(data), { EX: process.env.TTL })
     res.status(200).json(data)
   } catch (error) {
     res.status(500).json({ message: 'Error en el servidor al obtener un comentario por ID', error })

@@ -1,22 +1,25 @@
 const { Router } = require('express')
 const { userControllers } = require('../controllers')
 const { User } = require('../db/models')
-const { genericMiddlewares, userMiddlewares } = require('../middlewares')
+const { genericMiddlewares, userMiddlewares, cacheMiddlewares } = require('../middlewares')
 const { userSchema } = require('../schemas')
 const userRoutes = Router()
 
 // Metodos
-userRoutes.get('/', userControllers.getUsers)
+userRoutes.get('/', cacheMiddlewares.checkCache('all_users'), userControllers.getUsers)
 
 userRoutes.get('/:id',
+  cacheMiddlewares.checkCache('user'),
   genericMiddlewares.existID(User),
   userControllers.getUserById
 )
 userRoutes.get('/nickname/:nickName',
+  cacheMiddlewares.checkCache('nickName'),
   userMiddlewares.checkNickNameExists,
   userControllers.getUserByNickName
 )
 userRoutes.get('/:id/posts',
+  cacheMiddlewares.checkCache('userPosts'),
   genericMiddlewares.existID(User),
   userControllers.getUserWithPosts
 )
@@ -35,6 +38,7 @@ userRoutes.put('/:id',
   userControllers.editUser
 )
 userRoutes.delete('/:id',
+  cacheMiddlewares.deleteCache('user'),
   genericMiddlewares.existID(User),
   userControllers.deleteUser
 )

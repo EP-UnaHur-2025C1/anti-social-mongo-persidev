@@ -1,15 +1,16 @@
 const { Router } = require('express')
 const { tagControllers } = require('../controllers')
 const { Tag } = require('../db/models')
-const { genericMiddlewares, tagMiddlewares } = require('../middlewares')
+const { genericMiddlewares, tagMiddlewares, cacheMiddlewares } = require('../middlewares')
 const { tagSchema } = require('../schemas')
 const tagRoutes = Router()
 
 // Rutas
-tagRoutes.get('/', tagControllers.getTags)
+tagRoutes.get('/', cacheMiddlewares.checkCache('all_tags'), tagControllers.getTags)
 
 tagRoutes.get(
   '/:id',
+  cacheMiddlewares.checkCache('tag'),
   genericMiddlewares.existID(Tag),
   tagControllers.getTagById
 )
@@ -31,6 +32,7 @@ tagRoutes.put(
 
 tagRoutes.delete(
   '/:id',
+  cacheMiddlewares.deleteCache('tag'),
   genericMiddlewares.existID(Tag),
   tagControllers.deleteTagById
 )

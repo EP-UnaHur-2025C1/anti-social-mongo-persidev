@@ -1,9 +1,11 @@
 const { User } = require('../db/models')
+const redisClient = require('../cache/redis')
 
 // Getters --------------------------------------------
 const getUsers = async (_, res) => {
   try {
     const users = await User.find().populate('posts')
+    redisClient.set('all_users', JSON.stringify(users), { EX: process.env.TTL })
     res.json({ users })
   } catch (error) {
     console.log('Error en el servidor al solicitar los usuarios', error)
@@ -14,6 +16,7 @@ const getUserById = async (req, res) => {
   try {
     const id = req.params.id
     const user = await User.findById(id)
+    redisClient.set(`user-${id}`, JSON.stringify(user), { EX: process.env.TTL })
     res.json(user)
   } catch (error) {
     console.log('Error en el servidor al solicitar el usuario', error)
@@ -24,6 +27,7 @@ const getUserByNickName = async (req, res) => {
   try {
     const { nickName } = req.params
     const user = await User.findOne({ nickName }).populate('posts')
+    redisClient.set(`nickName-${user.id}`, JSON.stringify(user), { EX: process.env.TTL })
     res.json(user)
   } catch (error) {
     console.log('Error en el servidor al solicitar un usuario', error)
@@ -35,6 +39,7 @@ const getUserWithPosts = async (req, res) => {
   try {
     const { id } = req.params
     const userFind = await User.findById(id).populate('posts')
+    redisClient.set(`userPosts-${id}`, JSON.stringify(userFind), { EX: process.env.TTL })
     // const posts = await Post.find({ UserId: id })
     // userFind.posts = posts
     res.json(userFind)

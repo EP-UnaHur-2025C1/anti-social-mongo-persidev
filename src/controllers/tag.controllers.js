@@ -1,9 +1,11 @@
 const { Tag } = require('../db/models')
+const redisClient = require('../cache/redis')
 
 // Get para todos los tag
 const getTags = async (_, res) => {
   try {
     const data = await Tag.find()
+    redisClient.set('all_tags', JSON.stringify(data), { EX: process.env.TTL })
     res.status(200).json(data)
   } catch (error) {
     res.status(500).json({ error: error.message })
@@ -13,10 +15,12 @@ const getTags = async (_, res) => {
 // Get para ver un tag por id
 const getTagById = async (req, res) => {
   try {
-    const data = await Tag.findById(req.params.id)
+    const id = req.params.id
+    const data = await Tag.findById(id)
     if (!data) {
       return res.status(404).json({ message: 'No se encontro la etiqueta' })
     }
+    redisClient.set(`tag-${id}`, JSON.stringify(data), { EX: process.env.TTL })
     res.status(200).json(data)
   } catch (error) {
     res.status(500).json({ error: error.message })
