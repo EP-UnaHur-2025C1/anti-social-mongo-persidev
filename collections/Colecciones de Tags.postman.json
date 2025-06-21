@@ -1,10 +1,9 @@
 {
 	"info": {
-		"_postman_id": "a2161f5b-dff9-4b08-9ae1-4d04fb663504",
-		"name": "Coleccion de Tags",
+		"_postman_id": "b764d23c-2296-4d14-8b74-ef666e833637",
+		"name": "postmanCollectionTag",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "45069861",
-		"_collection_link": "https://alvarobravo-418020.postman.co/workspace/Alvaro-Bravo's-Workspace~71de2261-cbf1-41e5-848f-027c509c148d/collection/45069861-a2161f5b-dff9-4b08-9ae1-4d04fb663504?action=share&source=collection_link&creator=45069861"
+		"_exporter_id": "45068552"
 	},
 	"item": [
 		{
@@ -17,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"description\": \"#estudiando\"\r\n}",
+							"raw": "{\r\n    \"description\": \"vacaciones\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -179,7 +178,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"description\": \"#estudiando\"\r\n}",
+							"raw": "{\r\n    \"description\": \"#Trabajando\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -223,10 +222,10 @@
 									]
 								}
 							},
-							"_postman_previewlanguage": "Text",
-							"header": [],
+							"_postman_previewlanguage": null,
+							"header": null,
 							"cookie": [],
-							"body": ""
+							"body": null
 						},
 						{
 							"name": "creacion de tags2.ok",
@@ -235,7 +234,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"description\": \"#estudiando\"\r\n}",
+									"raw": "{\r\n    \"description\": \"#Comiendooo\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -253,190 +252,10 @@
 									]
 								}
 							},
-							"_postman_previewlanguage": "Text",
-							"header": [],
+							"_postman_previewlanguage": null,
+							"header": null,
 							"cookie": [],
-							"body": ""
-						},
-						{
-							"name": "creacion de tags3.ok",
-							"originalRequest": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"description\": \"#estudiando\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "localhost:3000/tags",
-									"host": [
-										"localhost"
-									],
-									"port": "3000",
-									"path": [
-										"tags"
-									]
-								}
-							},
-							"_postman_previewlanguage": "Text",
-							"header": [],
-							"cookie": [],
-							"body": ""
-						},
-						{
-							"name": "creacion de tags4.ok",
-							"originalRequest": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"description\": \"#estudiando\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "localhost:3000/tags",
-									"host": [
-										"localhost"
-									],
-									"port": "3000",
-									"path": [
-										"tags"
-									]
-								}
-							},
-							"_postman_previewlanguage": "Text",
-							"header": [],
-							"cookie": [],
-							"body": ""
-						},
-						{
-							"name": "creacion de tags5.ok",
-							"originalRequest": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"description\": \"#estudiando\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "localhost:3000/tags",
-									"host": [
-										"localhost"
-									],
-									"port": "3000",
-									"path": [
-										"tags"
-									]
-								}
-							},
-							"_postman_previewlanguage": "Text",
-							"header": [],
-							"cookie": [],
-							"body": ""
-						},
-						{
-							"name": "creacion de tags6.ok",
-							"originalRequest": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"description\": \"#estudiando\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "localhost:3000/tags",
-									"host": [
-										"localhost"
-									],
-									"port": "3000",
-									"path": [
-										"tags"
-									]
-								}
-							},
-							"_postman_previewlanguage": "Text",
-							"header": [],
-							"cookie": [],
-							"body": ""
-						},
-						{
-							"name": "creacion de tags7.ok",
-							"originalRequest": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"description\": \"#estudiando\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "localhost:3000/tags",
-									"host": [
-										"localhost"
-									],
-									"port": "3000",
-									"path": [
-										"tags"
-									]
-								}
-							},
-							"_postman_previewlanguage": "Text",
-							"header": [],
-							"cookie": [],
-							"body": ""
-						},
-						{
-							"name": "creacion de tags8.ok",
-							"originalRequest": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"description\": \"#estudiando\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "localhost:3000/tags",
-									"host": [
-										"localhost"
-									],
-									"port": "3000",
-									"path": [
-										"tags"
-									]
-								}
-							},
-							"_postman_previewlanguage": "Text",
-							"header": [],
-							"cookie": [],
-							"body": ""
+							"body": null
 						}
 					]
 				},
@@ -464,14 +283,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:3000/tags/9",
+							"raw": "localhost:3000/tags/684edbb6e9f6406195a900a9",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
 								"tags",
-								"9"
+								"684edbb6e9f6406195a900a9"
 							]
 						}
 					},
@@ -483,14 +302,14 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "localhost:3000/tags/9",
+							"raw": "localhost:3000/tags/6856bcc1e72d6cefc4023b3f",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
 								"tags",
-								"9"
+								"6856bcc1e72d6cefc4023b3f"
 							]
 						}
 					},
@@ -511,14 +330,14 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:3000/tags/9",
+							"raw": "localhost:3000/tags/6850d28f7c38d752623e91da",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
 								"tags",
-								"9"
+								"6850d28f7c38d752623e91da"
 							]
 						}
 					},
