@@ -8,7 +8,7 @@ const redisClient = require('./cache/redis.js')
 require('dotenv').config()
 
 // Obtengo el puerto
-const PORT = process.env.PORT || 3001
+const PORT = process.env.PORT || 3000
 
 // Creo la instancia de mi aplicacion
 const app = express()
