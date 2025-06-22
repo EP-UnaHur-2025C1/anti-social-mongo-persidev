@@ -133,7 +133,7 @@ const editPost = async (req, res) => {
   try {
     const { id } = req.params
     const { description } = req.body
-    const postEdite = await Post.findOneAndUpdate(
+    await Post.findOneAndUpdate(
       { _id: id },
       { $set: { description } },
       { new: true }

@@ -1,7 +1,7 @@
 const { Router } = require('express')
 const { Post, User } = require('../db/models')
 const { postControllers } = require('../controllers')
-const { genericMiddlewares, cacheMiddlewares, postMiddlewares } = require('../middlewares')
+const { genericMiddlewares, cacheMiddlewares } = require('../middlewares')
 const { postSchema, tagSchema } = require('../schemas')
 const postRoutes = Router()
 
