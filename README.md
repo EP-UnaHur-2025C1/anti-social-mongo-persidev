@@ -76,6 +76,7 @@ anti-social-relational-persidev
   - ` MONTHS = 7` para configurar la visibilidad de los comentarios de un post, por defecto son ` 6`
 
   - ` MONGO_URI= mongodb://admin:admin123@localhost:27017/db_anti-social?authSource=admin` Configuracion de URI para conectar MONGO.
+  - ` TTL = 60` Para configurar el tiempo de vida de los datos en memoria caché.
 
 #### 4. 🚀 Iniciamos el servidor:
 
@@ -85,10 +86,9 @@ anti-social-relational-persidev
   ```
 
 - Ejecutamos nuestro servidor 
-```
-npm run dev
-```
-> [!NOTE]  
+  ```
+  npm run dev
+  ```
 
 ## ✨ Características:
 
@@ -109,6 +109,7 @@ npm run dev
 * **NodeJs:** Ejecuta codigo JS en nuestro backend.
 * **ExpressJs:** Framework que facilita la creacion del servidor.
 * **Mongoose:** ODM que facilita la migracion a cualquier base de datos no relacional.
+* **Redis:** Permite el almacenamiento de datos en memoria.
 * **Joi:** Crea esquemas de validación.
 * **Dotenv:** Permite acceso a las variables de entorno.
 * **Nodemon:** Ejecutar el servidor.
@@ -134,7 +135,8 @@ anti-social-relational-persidev/
     ├── middlewares/ # Validadores de datos
     ├── routes/      # Definicion de las rutas
     ├── schemas/     # Definicion de los esquemas de validaciones
-    ├── docs/        # Configuracion de la documentacion 
+    ├── docs/        # Configuracion de la documentacion
+    ├── cache/       # Configuración de la memoria caché
     └── db/
         ├── config/      # Configuracion de BD
         └── models/      # Modelos de nuestra BD
@@ -224,10 +226,10 @@ Incluye:
 
 ## 🧑‍💻 Autores
 
- - Brenda Lera     - Estudiante de universidad de Hurlingham
- - Melina Alvarez  - Estudiante de universidad de Hurlingham
- - Álvaro Bravo    - Estudiante de universidad de Hurlingham
- - Roberto Galeano - Estudiante de universidad de Hurlingham
+ - Brenda Lera     - Estudiante de la Universidad Nacional de Hurlingham
+ - Melina Alvarez  - Estudiante de la Universidad Nacional de Hurlingham
+ - Álvaro Bravo    - Estudiante de la Universidad Nacional de Hurlingham
+ - Roberto Galeano - Estudiante de la Universidad Nacional de Hurlingham
 
 ## Respuestas
 
