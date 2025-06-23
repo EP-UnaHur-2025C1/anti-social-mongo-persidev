@@ -77,7 +77,7 @@ anti-social-relational-persidev
   - ` MONTHS = 7` Para configurar la visibilidad de los comentarios de un post, por defecto son ` 6`.
   - ` MONGO_URI= mongodb://admin:admin123@localhost:27017/db_anti-social?authSource=admin` Configuracion de URI para conectar MONGO.
   - ` TTL = 60` Para configurar el tiempo de vida de los datos en memoria caché.
-  - ` REDIS_PASSWORD =1qaz!QAZ ` Contraseña configurada para el servidor REDIS.
+  - ` REDIS_PASSWORD =1qaz!QAZ` Contraseña configurada para el servidor REDIS.
   - ` REDIS_URL =redis://localhost:6379` URL de conexión al servidor REDIS.
 
 #### 4. 🚀 Iniciamos el servidor:
