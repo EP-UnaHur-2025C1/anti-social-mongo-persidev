@@ -1,0 +1,1572 @@
+{
+	"info": {
+		"_postman_id": "fd409cbe-c0b0-4e65-852e-d2502a26e2b5",
+		"name": "Colecciones de Post",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "45056375",
+		"_collection_link": "https://brendalera-8798960.postman.co/workspace/Brenda-Lera's-Workspace~c01f6eda-3017-4f21-8118-39bc52167a3f/collection/45056375-fd409cbe-c0b0-4e65-852e-d2502a26e2b5?action=share&source=collection_link&creator=45056375"
+	},
+	"item": [
+		{
+			"name": "Retornar todos los post",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/posts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Retornar todos los post",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/posts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"posts"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "818"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"332-BvKyVyFIrYOlARxTUKD/deTC8zA\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 20 Jun 2025 00:20:56 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"posts\": [\n        {\n            \"_id\": \"6854a7dbe756b140b0d01c06\",\n            \"description\": \"Post sin image\",\n            \"UserId\": \"6854a7bce756b140b0d01c02\",\n            \"comments\": [],\n            \"tags\": [],\n            \"images\": [],\n            \"publicationDate\": \"2025-06-20T00:14:19.675Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"6854a89de756b140b0d01c0d\",\n            \"description\": \"Este es un posteo de prueba\",\n            \"UserId\": \"6854a7bce756b140b0d01c02\",\n            \"comments\": [],\n            \"tags\": [],\n            \"images\": [\n                {\n                    \"_id\": \"6854a89de756b140b0d01c0f\",\n                    \"url\": \"https://example.com/image.jpg\",\n                    \"PostId\": \"6854a89de756b140b0d01c0d\"\n                }\n            ],\n            \"publicationDate\": \"2025-06-20T00:17:33.811Z\",\n            \"__v\": 1\n        },\n        {\n            \"_id\": \"6854a8b8e756b140b0d01c17\",\n            \"description\": \"Posteo con imagen 2\",\n            \"UserId\": \"6854a7bce756b140b0d01c02\",\n            \"comments\": [],\n            \"tags\": [],\n            \"images\": [\n                {\n                    \"_id\": \"6854a8b8e756b140b0d01c19\",\n                    \"url\": \"https://example.com/image.jpg\",\n                    \"PostId\": \"6854a8b8e756b140b0d01c17\"\n                }\n            ],\n            \"publicationDate\": \"2025-06-20T00:18:00.067Z\",\n            \"__v\": 1\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Retornar posteo por id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/posts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Retornar posteo por id",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/posts/6854a89de756b140b0d01c0d",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"posts",
+								"6854a89de756b140b0d01c0d"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "320"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"140-l/ERB1FqaY6iYkb8ruOBw3PMBDg\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 20 Jun 2025 00:22:36 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"post\": {\n        \"_id\": \"6854a89de756b140b0d01c0d\",\n        \"description\": \"Este es un posteo de prueba\",\n        \"UserId\": \"6854a7bce756b140b0d01c02\",\n        \"comments\": [],\n        \"tags\": [],\n        \"images\": [\n            {\n                \"_id\": \"6854a89de756b140b0d01c0f\",\n                \"url\": \"https://example.com/image.jpg\",\n                \"PostId\": \"6854a89de756b140b0d01c0d\"\n            }\n        ],\n        \"publicationDate\": \"2025-06-20T00:17:33.811Z\",\n        \"__v\": 1\n    }\n}"
+				},
+				{
+					"name": "No se encontro el id",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/posts/6854a89de756b140b0d01c02",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"posts",
+								"6854a89de756b140b0d01c02"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "68"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"44-a89E+hrVjeAdVcmHtAdVFFgrkm0\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 20 Jun 2025 00:27:22 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"No se encontró el id \",\n    \"id\": \"6854a89de756b140b0d01c02\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Creación de post sin img",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"UserId\":\"6854a7bce756b140b0d01c02\",\r\n    \"description\": \"Post sin image\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/posts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Creación de post sin img",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"UserId\": \"6854a7bce756b140b0d01c02\",\r\n    \"description\": \"Post sin image\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/posts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"posts"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "190"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"be-paBEb/0tJSfMW0KVdKUtooyacpM\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 20 Jun 2025 00:14:19 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"_id\": \"6854a7dbe756b140b0d01c06\",\n    \"description\": \"Post sin image\",\n    \"UserId\": \"6854a7bce756b140b0d01c02\",\n    \"comments\": [],\n    \"tags\": [],\n    \"images\": [],\n    \"publicationDate\": \"2025-06-20T00:14:19.675Z\",\n    \"__v\": 0\n}"
+				},
+				{
+					"name": "Creación incorrecta por UserId no encontrado",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"UserId\": \"6854a7bce756b140b0d01c03\",\r\n    \"description\": \"Post sin image\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/posts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"posts"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "29"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"1d-gu6tIiGYiN+1K4cHmjJOW1UxD0w\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 20 Jun 2025 00:18:53 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"No existe el id\"\n}"
+				},
+				{
+					"name": "Creación Incorrecta por description vacia",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"UserId\": \"6854a7bce756b140b0d01c02\",\r\n    \"description\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/posts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"posts"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "121"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"79-1Nj2uYlq87LnHyUbhn9VGPNwjXI\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 20 Jun 2025 00:20:29 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"attributeError\": \"description\",\n        \"messageError\": \"\\\"description\\\" is not allowed to be empty\",\n        \"typeError\": \"string.empty\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Creación de post con img",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{    \r\n  \"UserId\": \"6854a7bce756b140b0d01c02\",\r\n  \"description\": \"Este es un posteo de prueba\",\r\n  \"images\": [\r\n    {\r\n      \"url\": \"https://example.com/image.jpg\"\r\n    }\r\n  ]\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/posts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Creación de post con img",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"UserId\": \"6854a7bce756b140b0d01c02\",\r\n  \"description\": \"Posteo con imagen 2\",\r\n  \"images\": [\r\n    {\r\n      \"url\": \"https://example.com/image.jpg\"\r\n    }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/posts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"posts"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "267"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"10b-QagXM+nfBlVxPIwi6ISOHTIIwcE\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 20 Jun 2025 00:18:00 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"_id\": \"6854a8b8e756b140b0d01c17\",\n    \"description\": \"Posteo con imagen 2\",\n    \"UserId\": \"6854a7bce756b140b0d01c02\",\n    \"comments\": [],\n    \"tags\": [],\n    \"images\": [\n        {\n            \"_id\": \"6854a8b8e756b140b0d01c19\",\n            \"url\": \"https://example.com/image.jpg\"\n        }\n    ],\n    \"publicationDate\": \"2025-06-20T00:18:00.067Z\",\n    \"__v\": 1\n}"
+				},
+				{
+					"name": "Creación incorrecta por url invalido",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{    \r\n  \"UserId\": \"6854a7bce756b140b0d01c02\",\r\n  \"description\": \"Este es un posteo de prueba\",\r\n  \"images\": [\r\n    {\r\n      \"url\": \"image.png\"\r\n    }\r\n  ]\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/posts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"posts"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "167"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"a7-Os970FdFrd+vmUu+oOjrpVtgEr0\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 20 Jun 2025 00:30:44 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"attributeError\": \"images\",\n        \"messageError\": \"\\\"images[0].url\\\" must be a valid uri with a scheme matching the http|https pattern\",\n        \"typeError\": \"string.uriCustomScheme\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Creación de un tag a post",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"description\": \"tag a post\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/posts/6854a89de756b140b0d01c0d",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"posts",
+						"6854a89de756b140b0d01c0d"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Creación de un tag a post",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"tag a post\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/posts/6854a89de756b140b0d01c0d",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"posts",
+								"6854a89de756b140b0d01c0d"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "318"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"13e-ZaQrrbHl0ypjNUAGOPRjCQRJc9k\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 20 Jun 2025 00:52:54 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"post\": {\n        \"_id\": \"6854a89de756b140b0d01c0d\",\n        \"description\": \"Este es un posteo de prueba\",\n        \"UserId\": \"6854a7bce756b140b0d01c02\",\n        \"comments\": [],\n        \"tags\": [\n            {\n                \"_id\": \"6854b0e68efbf9704396d2f6\",\n                \"description\": \"tag a post\",\n                \"posts\": [\n                    \"6854a89de756b140b0d01c0d\"\n                ],\n                \"__v\": 0\n            }\n        ],\n        \"images\": [],\n        \"publicationDate\": \"2025-06-20T00:17:33.811Z\",\n        \"__v\": 1\n    }\n}"
+				},
+				{
+					"name": "El tag ya existe",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"tag a post\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/posts/6854a89de756b140b0d01c0d",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"posts",
+								"6854a89de756b140b0d01c0d"
+							]
+						}
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "45"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"2d-WtvdBZClmObr+lVEdKPbaKqx47Y\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 20 Jun 2025 00:55:03 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Error en el servidor\",\n    \"error\": {}\n}"
+				},
+				{
+					"name": "Error por descripción vacia",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/posts/6854a89de756b140b0d01c0d",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"posts",
+								"6854a89de756b140b0d01c0d"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "121"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"79-1Nj2uYlq87LnHyUbhn9VGPNwjXI\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 20 Jun 2025 00:56:23 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"attributeError\": \"description\",\n        \"messageError\": \"\\\"description\\\" is not allowed to be empty\",\n        \"typeError\": \"string.empty\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Editar un posteo por su id",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"description\": \"Nueva description\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/posts/8",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"posts",
+						"8"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Editar un posteo por su id",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"Nueva description\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/posts/6854a7dbe756b140b0d01c06",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"posts",
+								"6854a7dbe756b140b0d01c06"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "193"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"c1-UYoHKxpEQEktVBWCv5fIPyorSzQ\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 20 Jun 2025 00:33:24 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"_id\": \"6854a7dbe756b140b0d01c06\",\n    \"description\": \"Nueva description\",\n    \"UserId\": \"6854a7bce756b140b0d01c02\",\n    \"comments\": [],\n    \"tags\": [],\n    \"images\": [],\n    \"publicationDate\": \"2025-06-20T00:14:19.675Z\",\n    \"__v\": 0\n}"
+				}
+			]
+		},
+		{
+			"name": "Editar un posteo con imagen",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"images\":[\r\n        {\r\n            \"url\": \"https://cdn.pixabay.com/photo/2016/09/08/13/58/desert-1654439_1280.jpg\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/posts/11/images/6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"posts",
+						"11",
+						"images",
+						"6"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Editar un posteo con imagen por identificadores",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"images\":[\r\n        {\r\n            \"url\": \"https://cdn.pixabay.com/photo/2016/09/08/13/58/desert-1654439_1280.jpg\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/posts/6854a8b8e756b140b0d01c17/images/6854a8b8e756b140b0d01c19",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"posts",
+								"6854a8b8e756b140b0d01c17",
+								"images",
+								"6854a8b8e756b140b0d01c19"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "344"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"158-rfzBnQYN0I/qixPLxdId7ciXHs8\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 20 Jun 2025 00:34:58 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"_id\": \"6854a8b8e756b140b0d01c17\",\n    \"description\": \"Posteo con imagen 2\",\n    \"UserId\": \"6854a7bce756b140b0d01c02\",\n    \"comments\": [],\n    \"tags\": [],\n    \"images\": [\n        {\n            \"_id\": \"6854a8b8e756b140b0d01c19\",\n            \"url\": \"https://cdn.pixabay.com/photo/2016/09/08/13/58/desert-1654439_1280.jpg\",\n            \"PostId\": \"6854a8b8e756b140b0d01c17\"\n        }\n    ],\n    \"publicationDate\": \"2025-06-20T00:18:00.067Z\",\n    \"__v\": 1\n}"
+				},
+				{
+					"name": "No se encontro el id de imagen",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"images\":[\r\n        {\r\n            \"url\": \"https://cdn.pixabay.com/photo/2016/09/08/13/58/desert-1654439_1280.jpg\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/posts/6854a8b8e756b140b0d01c17/images/6854a8b8e756b140b0d01c11",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"posts",
+								"6854a8b8e756b140b0d01c17",
+								"images",
+								"6854a8b8e756b140b0d01c11"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "82"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"52-Dtj/04bx/Rdsn6yav3b91oEOe7s\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 20 Jun 2025 00:36:20 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"No se encontró la imagen con ese ID\",\n    \"id\": \"6854a8b8e756b140b0d01c11\"\n}"
+				},
+				{
+					"name": "La imagen no pertenece al post especificado",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"images\":[\r\n        {\r\n            \"url\": \"https://cdn.pixabay.com/photo/2016/09/08/13/58/desert-1654439_1280.jpg\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/posts/6854a89de756b140b0d01c0d/images/6854a8b8e756b140b0d01c19",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"posts",
+								"6854a89de756b140b0d01c0d",
+								"images",
+								"6854a8b8e756b140b0d01c19"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "143"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"8f-tppVAZ8K89BArzb208rLL9w6Wbc\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 20 Jun 2025 00:38:20 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"La imagen no pertenece al post especificado\",\n    \"imagePostId\": \"6854a8b8e756b140b0d01c17\",\n    \"requestedPostId\": \"6854a89de756b140b0d01c0d\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Eliminar un posteo por su id",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/posts/9",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"posts",
+						"9"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Eliminar un posteo por su id",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/posts/6854a8b8e756b140b0d01c17",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"posts",
+								"6854a8b8e756b140b0d01c17"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "221"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"dd-+D7X0ME1EMKXgLVNYDFHjoFlSKw\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 20 Jun 2025 00:41:09 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"_id\": \"6854a8b8e756b140b0d01c17\",\n    \"description\": \"Posteo con imagen 2\",\n    \"UserId\": \"6854a7bce756b140b0d01c02\",\n    \"comments\": [],\n    \"tags\": [],\n    \"images\": [\n        \"6854a8b8e756b140b0d01c19\"\n    ],\n    \"publicationDate\": \"2025-06-20T00:18:00.067Z\",\n    \"__v\": 1\n}"
+				},
+				{
+					"name": "No se encontro el id",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/posts/6854a8b8e756b140b0d01c11",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"posts",
+								"6854a8b8e756b140b0d01c11"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "68"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"44-1zkWwbmCpspbIB37b//1RX70y4w\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 20 Jun 2025 00:43:09 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"No se encontró el id \",\n    \"id\": \"6854a8b8e756b140b0d01c11\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Eliminar una imagen de un posteo por id",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"images\":[\r\n        {\r\n            \"url\": \"https://cdn.pixabay.com/photo/2016/09/08/13/58/desert-1654439_1280.jpg\"\r\n        }\r\n    ]\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/posts/11/images/6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"posts",
+						"11",
+						"images",
+						"6"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Eliminar una imagen de un posteo por id",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"images\":[\r\n        {\r\n            \"url\": \"https://cdn.pixabay.com/photo/2016/09/08/13/58/desert-1654439_1280.jpg\"\r\n        }\r\n    ]\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/posts/6854a89de756b140b0d01c0d/images/6854a89de756b140b0d01c0f",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"posts",
+								"6854a89de756b140b0d01c0d",
+								"images",
+								"6854a89de756b140b0d01c0f"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "108"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"6c-V+MMEGDZAMQebImRnKBMYGBI1Vk\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 20 Jun 2025 00:44:18 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"_id\": \"6854a89de756b140b0d01c0f\",\n    \"url\": \"https://example.com/image.jpg\",\n    \"PostId\": \"6854a89de756b140b0d01c0d\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Eliminar un tag de un posteo",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/posts/6854a89de756b140b0d01c0d/tag/6854b0e68efbf9704396d2f6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"posts",
+						"6854a89de756b140b0d01c0d",
+						"tag",
+						"6854b0e68efbf9704396d2f6"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Eliminar un tag de un posteo",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/posts/6854a89de756b140b0d01c0d/tag/6854b0e68efbf9704396d2f6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"posts",
+								"6854a89de756b140b0d01c0d",
+								"tag",
+								"6854b0e68efbf9704396d2f6"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "106"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"6a-+/Zqk5VPAVC0ZhCncBhygAoKvD8\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 20 Jun 2025 00:59:18 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"_id\": \"6854b0e68efbf9704396d2f6\",\n    \"description\": \"tag a post\",\n    \"posts\": [\n        \"6854a89de756b140b0d01c0d\"\n    ],\n    \"__v\": 0\n}"
+				},
+				{
+					"name": "Tag no encontrado",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/posts/6854a89de756b140b0d01c0d/tag/6854b0e68efbf9704396d2f6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"posts",
+								"6854a89de756b140b0d01c0d",
+								"tag",
+								"6854b0e68efbf9704396d2f6"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "67"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"43-mMlbBLJphS6+7GFgECFiwjKoFZg\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 20 Jun 2025 01:00:32 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"No se encontro el tag con id 6854b0e68efbf9704396d2f6\"\n}"
+				}
+			]
+		}
+	]
+}

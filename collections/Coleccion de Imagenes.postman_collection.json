@@ -1,0 +1,192 @@
+{
+	"info": {
+		"_postman_id": "3247193b-d64c-4cd9-b1f5-c24c42686ae2",
+		"name": "Coleccion de Imagenes",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "45054739",
+		"_collection_link": "https://melinaalvarez.postman.co/workspace/persidev-mongo~541071af-d1d0-4304-9cbc-35ba5c2506d9/collection/45054739-3247193b-d64c-4cd9-b1f5-c24c42686ae2?action=share&source=collection_link&creator=45054739"
+	},
+	"item": [
+		{
+			"name": "Creación de imagenes",
+			"item": [
+				{
+					"name": "Creación de imagen 1 correctamente",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"url\": \"https://unahur.edu.ar/wp-content/uploads/2022/01/comunicadoinstitucionalnot01.jpg\",\r\n    \"PostId\": \"68542f5a4ac39fa504db4f3a\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/images"
+					},
+					"response": []
+				},
+				{
+					"name": "Creación de imagen 2 correctamente",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"url\": \"https://upload.wikimedia.org/wikipedia/commons/9/9f/Caffe_Latte_cup.jpg\",\r\n    \"PostId\": \"68542f5a4ac39fa504db4f3a\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/images"
+					},
+					"response": []
+				},
+				{
+					"name": "Creación de imagen 3 correctamente",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"url\": \"https://i.pinimg.com/736x/de/0d/87/de0d8775d21ffc398bbd2b4e8c061209.jpg\",\r\n    \"PostId\": \"68542f5a4ac39fa504db4f3a\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/images"
+					},
+					"response": []
+				},
+				{
+					"name": "Creación de imagen 4 correctamente",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"url\": \"https://st2.depositphotos.com/2222024/5609/i/450/depositphotos_56093859-stock-photo-happy-little-orange-havanese-puppy.jpg\",\r\n    \"PostId\": \"68542f5a4ac39fa504db4f3a\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/images"
+					},
+					"response": []
+				},
+				{
+					"name": "Crear un comentario con URL vacia",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"url\": \"\",\r\n    \"PostId\": \"68542f5a4ac39fa504db4f3a\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/images"
+					},
+					"response": []
+				},
+				{
+					"name": "Crear un comentario con URL inválida",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"url\": \"logo.png\",\r\n    \"PostId\": \"68542f5a4ac39fa504db4f3a\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/images"
+					},
+					"response": []
+				},
+				{
+					"name": "Crear comentario con URL inválida en la terminación",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"url\": \"http://logo\",\r\n    \"PostId\": \"68542f5a4ac39fa504db4f3a\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/images"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Obtener imagenes",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": "http://localhost:3000/images"
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar imagen 1",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": "http://localhost:3000/images/685431c84ac39fa504db4f5f"
+			},
+			"response": []
+		}
+	]
+}

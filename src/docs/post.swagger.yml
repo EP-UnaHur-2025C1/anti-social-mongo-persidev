@@ -1,0 +1,270 @@
+tag:
+  - name: Post
+    description: Peticiones para realizar sobre posteos
+components:
+  schemas:
+    Post:
+      type: object
+      properties:
+        UserId:
+          type: string
+          example: "684f1d2d6269b2775b25c41d"
+          description: Id del usuario que creó el post.
+        description:
+          type: string
+          example: "Este es un posteo de prueba"
+          description: Descripción del posteo.
+        images:
+          type: array
+          description: Imágenes del posteo.
+          items:
+            type: object
+            properties:
+              url:
+                type: string
+                example: "https://example.com/image.jpg"
+                description: URL de la imagen.
+    Tag:
+      type: object
+      properties:
+        description:
+          type: string
+          example: "Descripcion del tag"
+          description: Descripción del tag.
+
+paths:
+  /posts:
+    get:
+      tags:
+        - Post
+      summary: Retorna todos los posteos.
+      description: Obtener todos los posteos disponibles.
+      operationId: getPosts
+      responses:
+        "200":
+          description: Operacion realizada.
+        "404":
+          description: No se encontraron posteos.
+        "500":
+          description: Error en el servidor al solicitar los posteos.
+    post:
+      tags:
+        - Post
+      summary: Permite crear un posteo (con Imagenes opcional).
+      description: Permite crear un posteo a la base de datos retornando el posteo agregado.
+      operationId: createPost
+      requestBody:
+        description: Crea un posteo
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Post"
+            example:
+              UserId: "684f1d2d6269b2775b25c41d"
+              description: "Este es un posteo de prueba"
+              images:
+                - url: "https://example.com/image.jpg"
+        required: true
+      responses:
+        "200":
+          description: Operacion realizada.
+        "400":
+          description: Error en la entrada de datos.
+        "404":
+          description: No se encontro el usuario.
+        "500":
+          description: Error en el servidor al crear el posteo.
+  /posts/{id}:
+    get:
+      tags:
+        - Post
+      summary: Retorna un posteo por su id.
+      description: Obtener un posteo por su id.
+      operationId: getPostById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Id del posteo a buscar.
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Operacion realizada.
+        "404":
+          description: No se encontro el posteo.
+        "500":
+          description: Error en el servidor al solicitar el posteo.
+    post:
+      tags:
+        - Post
+      summary: Permite crear un tag a un posteo.
+      description: Permite crear un tag a la base de datos retornando el posteo con el tag agregado.
+      operationId: createPostTag
+      requestBody:
+        description: Crea un tag a un posteo
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Tag"
+            example:
+              description: "Este es un tag de prueba"
+        required: true
+      responses:
+        "200":
+          description: Operacion realizada.
+        "400":
+          description: Error en la entrada de datos.
+        "404":
+          description: No se encontraron posteos.
+        "500":
+          description: Error en el servidor al intentar crear la etiqueta.
+    put:
+      tags:
+        - Post
+      summary: Permite actualizar un posteo por su id.
+      description: Permite actualizar un posteo a la base de datos retornando el posteo actualizado.
+      operationId: updatePost
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Id del posteo a actualizar.
+          schema:
+            type: string
+      requestBody:
+        description: Actualiza un posteo
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Post"
+            example:
+              description: "Este es un posteo corregido"
+              images:
+                - url: "https://example.com/imageAct.jpg"
+        required: true
+      responses:
+        "200":
+          description: Operacion realizada.
+        "400":
+          description: Error en la entrada de datos.
+        "404":
+          description: No se encontro el posteo.
+        "500":
+          description: Error en el servidor al editar el posteo.
+    delete:
+      tags:
+        - Post
+      summary: Permite eliminar un posteo por su id.
+      description: Permite eliminar un posteo de la base de datos retornando el posteo eliminado.
+      operationId: deletePost
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Id del posteo a eliminar.
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Operacion realizada.
+        "400":
+          description: Error en la entrada de datos.
+        "404":
+          description: No se encontro el posteo.
+        "500":
+          description: Error en el servidor al eliminar el posteo.
+  /posts/{id}/images/{imageId}:
+    put:
+      tags:
+        - Post
+      summary: Permite actualizar una imagen de un posteo por su id.
+      description: Permite actualizar una imagen de un posteo en la base de datos retornando el posteo con la imagen actualizada.
+      operationId: updatePostImage
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Id del posteo a actualizar.
+          schema:
+            type: integer
+        - name: imageId
+          in: path
+          required: true
+          description: Id de la imagen a actualizar.
+          schema:
+            type: integer
+      requestBody:
+        description: Actualiza una imagen de un posteo
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Post"
+            example:
+              images:
+                - url: "https://example.com/imageAct.jpg"
+        required: true
+      responses:
+        "200":
+          description: Operacion realizada.
+        "400":
+          description: Error en la entrada de datos.
+        "404":
+          description: No se encontro el posteo o la imagen.
+        "500":
+          description: Error en el servidor al editar la imagen de un posteo.
+    delete:
+      tags:
+        - Post
+      summary: Permite eliminar una imagen de un posteo por su id.
+      description: Permite eliminar una imagen de un posteo de la base de datos retornando el posteo con la imagen eliminada.
+      operationId: deletePostImage
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Id del posteo a eliminar.
+          schema:
+            type: integer
+        - name: imageId
+          in: path
+          required: true
+          description: Id de la imagen a eliminar.
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Operacion realizada.
+        "400":
+          description: Error en la entrada de datos.
+        "404":
+          description: No se encontro el posteo o la imagen.
+        "500":
+          description: Error en el servidor al eliminar la imagen de un posteo.
+  /posts/{postId}/tag/{tagId}:
+    delete:
+      tags:
+        - Post
+      summary: Permite eliminar una etiqueta de un posteo.
+      description: Eliminar una etiqueta de un posteo existente.
+      operationId: deletePostTag
+      parameters:
+        - name: postId
+          in: path
+          required: true
+          description: Id del posteo al que pertenece la etiqueta.
+          schema:
+            type: string
+        - name: tagId
+          in: path
+          required: true
+          description: Id de la etiqueta a eliminar.
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Operacion realizada.
+        "404":
+          description: No se encontro el posteo o la etiqueta.
+        "500":
+          description: Error en el servidor al eliminar la etiquetade un posteo.
